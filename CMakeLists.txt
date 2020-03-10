@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(FLTK REQUIRED)
 
-add_executable(loups-et-moutons
+add_executable(loups-et-moutons WIN32
   main.cpp
   main.h
   unite1.cpp

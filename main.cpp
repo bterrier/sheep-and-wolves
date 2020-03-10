@@ -8,10 +8,19 @@
 
 // Déclaration des sous-programmes
 void CycleCB( void*) ;
+int main();
+
+#ifdef _WIN32
+#include <Windows.h>
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                             LPSTR lpCmdLine, int nCmdShow) {
+                                 return main();
+}
+#endif
 
 // Programme Principal
 //void main()
-int main (int argc, char ** argv)
+int main ()
 {
     // initialise le logiciel
     firstinitialiser();
