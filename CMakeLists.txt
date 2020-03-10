@@ -22,6 +22,8 @@ add_executable(loups-et-moutons
   unite4.h
 )
 
+target_include_directories(loups-et-moutons PUBLIC ${FLTK_INCLUDE_DIR})
+
 configure_file(mouton.gif mouton.gif COPYONLY)
 configure_file(loup.gif loup.gif COPYONLY)
 configure_file(debut.gif debut.gif COPYONLY)
