@@ -34,9 +34,9 @@ extern Fl_Value_Slider*    gCurseurMouton;
 extern Fl_Value_Slider*    gCurseurLoup;
 
 extern Fl_Value_Slider*    gCusrseurRapportLM;
-extern Fl_GIF_Image img_mouton;
-extern Fl_GIF_Image img_debut;
-extern Fl_GIF_Image img_loup;
+extern Fl_GIF_Image *img_mouton;
+extern Fl_GIF_Image *img_debut;
+extern Fl_GIF_Image *img_loup;
 extern Fl_Color vert ;
 
 

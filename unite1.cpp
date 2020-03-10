@@ -24,9 +24,9 @@ Fl_Value_Slider*    gCusrseurRapportLM;
 
 // Définition des images
 
-Fl_GIF_Image img_mouton("mouton.gif");
-Fl_GIF_Image img_debut("debut.gif");
-Fl_GIF_Image img_loup("loup.gif");
+Fl_GIF_Image *img_mouton = nullptr; //("mouton.gif");
+Fl_GIF_Image *img_debut= nullptr;   //("debut.gif");
+Fl_GIF_Image *img_loup = nullptr;   //("loup.gif");
 
 Fl_Color vert = fl_rgb_color(87, 153, 40);
 
@@ -43,6 +43,10 @@ void CreerFenetre()
     // Création de la zone de dessin
     gZoneDessin = new ZoneDessin(X_ZONE,Y_ZONE,L_ZONE,H_ZONE);
     gZoneDessin->draw_callback( ZoneDessinDessinerCB, NULL ) ;
+
+    img_mouton = new Fl_GIF_Image("mouton.gif");
+    img_debut = new Fl_GIF_Image("debut.gif");
+    img_loup = new Fl_GIF_Image("loup.gif");
 
     }
 

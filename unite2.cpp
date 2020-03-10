@@ -40,9 +40,9 @@ void ZoneDessinDessinerCB( Fl_Widget* widget, void* data )
 		}
 	}
 	else if(gStart)                                                       // Image sur la zone de dessin lors du lancement du jeu
-		img_debut.draw(X_ZONE, Y_ZONE);
+		img_debut->draw(X_ZONE, Y_ZONE);
 	else if(gWinner==LOUP)                                                // Image d'un loup lorsque les loups l'emportent
-		img_loup.draw(X_ZONE, Y_ZONE);
+		img_loup->draw(X_ZONE, Y_ZONE);
 	else if(gWinner==MOUTON)                                              // Image d'un mouton lorsque les moutons l'emportent
-		img_mouton.draw(X_ZONE, Y_ZONE);
+		img_mouton->draw(X_ZONE, Y_ZONE);
 }
