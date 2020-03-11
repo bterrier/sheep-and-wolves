@@ -1,154 +1,122 @@
 #include "unite1.h"
 #include "unite3.h"
 #include "unite4.h"
-#include <stdlib.h>
-     // exit, rand
 
+#include <cstdlib>
 
-
-
-
-int isSick()                // Fonction de maladie d'un loup
+bool isSick()                // Fonction de maladie d'un loup
 {
-    int a,b;
-	a=rand()%100+1;                       // On choisit aléatoirement un entier entre 1 et 100
-	if ( a<gMortaliteLoup*100 )           // Si le nombre est inférieur à la mortalité
-	{
-	    b=1;        //Le loup va y passer
-	}
-	else
-	{
-	    b=0;        //C'est reparti pour un tour
-	}
+    int a = std::rand() % 100 + 1;                       // On choisit aléatoirement un entier entre 1 et 100
+    const bool isSick = a < gMortaliteLoup * 100;           // Si le nombre est inférieur à la mortalité
+    return isSick;
+}
 
-return b;
+bool isPregnant()                    // De meme que pour isSick
+{
+    int a = std::rand() % 100 + 1;
+    const bool isPregnant = a < gNataliteMouton * 100;
+    return isPregnant;
 }
 
 
 
-
-int isPregnant()                    // De meme que pour isSick
+bool isVacant(int x,int y,int z)             //Fonction permettant de savoir si la case est vide, ou pas
 {
-    int a,b;
-	a=rand()%100+1;
-	if ( a<gNataliteMouton*100 )
-	{
-	    b=1;        //Un nouveau né est en vue
-	}
-	else
-	{
-	    b=0;        //Rien ne sera pondu
-	}
-return b;
+    return gTableauJeu[x][y][z] == VIDE;
 }
-
-
-
-int isVacant(int x,int y,int z)             //Fonction permettant de savoir si la case est vide, ou pas
-{
-    if(gTableauJeu[x][y][z] == VIDE)
-        return 1;
-    else
-        return 0;
-
-}
-
 
 
 void setTab(int p)                     // Mise à zéro du tableau de jeu
 {
-    int i, j;
-
-    for ( i=0 ; i<TAILLE_MATRICE+2 ; i++)
+    for (int i = 0 ; i < TAILLE_MATRICE + 2 ; i++)
     {
-            for ( j=0 ; j<TAILLE_MATRICE+2 ; j++ )
+            for (int j = 0 ; j < TAILLE_MATRICE + 2 ; ++j)
             {
-                if ( i!=0 && j!=0 && i!=TAILLE_MATRICE+1 && j!=TAILLE_MATRICE+1 )
+                if (i != 0 && j != 0 && i != TAILLE_MATRICE + 1 && j != TAILLE_MATRICE + 1)
                 {
-                    gTableauJeu[i][j][p]=VIDE;          // Les cases centrales sont vides
+                    gTableauJeu[i][j][p] = VIDE;          // Les cases centrales sont vides
                 }
                 else
                 {
-                    gTableauJeu[i][j][p]=BORD;          // Et les bords sont inaccessibles, pour des problèmes de déplacement
+                    gTableauJeu[i][j][p] = BORD;          // Et les bords sont inaccessibles, pour des problèmes de déplacement
                 }
             }
     }
 }
 
 void deplacerMouton (int x, int y){         // Procédure déplacant les moutons
-      int a;
-      int p=gTour%2;            // p = 0 ou 1 selon ma parité du nombre de tours joués
-      int xfutur,yfutur;        // futur case du mouton
-      int count=0;
+    int p=gTour%2;            // p = 0 ou 1 selon ma parité du nombre de tours joués
+    int xfutur,yfutur;        // futur case du mouton
+    int count=0;
 
-      do            // le processeur cherche
-      {
+    do            // le processeur cherche
+    {
         count++;
-        a=(rand()%8)+1;         //Variable aléatoire de 1 à 8
+        int a = (std::rand() % 8) + 1;         //Variable aléatoire de 1 à 8
         switch (a)
         {
-          case 1 :              // 1 -> bas/gauche
-          xfutur=x-1;
-          yfutur=y-1;
-          break;
+        case 1 :              // 1 -> bas/gauche
+            xfutur=x-1;
+            yfutur=y-1;
+            break;
 
-          case 2 :              // 2 -> bas/centre
-          xfutur=x;
-          yfutur=y-1;
-          break;
+        case 2 :              // 2 -> bas/centre
+            xfutur=x;
+            yfutur=y-1;
+            break;
 
-          case 3 :              // 3 -> bas/droite
-          xfutur=x+1;
-          yfutur=y-1;
-          break;
+        case 3 :              // 3 -> bas/droite
+            xfutur=x+1;
+            yfutur=y-1;
+            break;
 
-          case 4 :              // 4 -> gauche
-          xfutur=x-1;
-          yfutur=y;
-          break;
+        case 4 :              // 4 -> gauche
+            xfutur=x-1;
+            yfutur=y;
+            break;
 
-          case 5 :              // 5 -> haut/droite
-          xfutur=x+1;
-          yfutur=y+1;
-          break;
+        case 5 :              // 5 -> haut/droite
+            xfutur=x+1;
+            yfutur=y+1;
+            break;
 
-          case 6 :              // 6 -> doite
-          xfutur=x+1;
-          yfutur=y;
-          break;
+        case 6 :              // 6 -> doite
+            xfutur=x+1;
+            yfutur=y;
+            break;
 
-          case 7 :              // 7 -> haut/gauche
-          xfutur=x-1;
-          yfutur=y+1;
-          break;
+        case 7 :              // 7 -> haut/gauche
+            xfutur=x-1;
+            yfutur=y+1;
+            break;
 
-          case 8 :              // 8 -> haut/centre
-          xfutur=x;
-          yfutur=y+1;
-          break;
+        case 8 :              // 8 -> haut/centre
+            xfutur=x;
+            yfutur=y+1;
+            break;
         }
-      } // tant que l'un des 2 tableaux est occupé, et que le compteur est inférieur à 10 (risque de boucle infine)
-      while ( ( !isVacant(xfutur,yfutur,1-p) || !isVacant(xfutur,yfutur,p) ) && count<10);
+    } // tant que l'un des 2 tableaux est occupé, et que le compteur est inférieur à 10 (risque de boucle infine)
+    while ( ( !isVacant(xfutur,yfutur,1-p) || !isVacant(xfutur,yfutur,p) ) && count<10);
 
 
     if(count<10)   {     // S'il trouve une solution lorsque le compteur est inférieur à 10
-      gTableauJeu[xfutur][yfutur][1-p]=MOUTON;      // il déplace le mouton dans le nouveau tableau
+        gTableauJeu[xfutur][yfutur][1-p]=MOUTON;      // il déplace le mouton dans le nouveau tableau
 
 
-      if (isPregnant())             // Si le mouton est "enceinte"
-      {
-          gTableauJeu[x][y][1-p]=MOUTON;        // Il laisse un mouton derrière lui (dans le nouveau tableau)
+        if (isPregnant())             // Si le mouton est "enceinte"
+        {
+            gTableauJeu[x][y][1-p]=MOUTON;        // Il laisse un mouton derrière lui (dans le nouveau tableau)
 
-      }
-      else
-      {
-          gTableauJeu[x][y][1-p]=VIDE;      // Sinon, il se déplace simplement
-      }
+        }
+        else
+        {
+            gTableauJeu[x][y][1-p]=VIDE;      // Sinon, il se déplace simplement
+        }
     }
     else
         gTableauJeu[x][y][1-p]=MOUTON;   // Si le compteur est à 10, on laisse le mouton où il était, mais dans le nouveau tableau
- gTableauJeu[x][y][p]=VIDE;        // On efface le mouton joué du tableau précédent
-  }
+    gTableauJeu[x][y][p]=VIDE;        // On efface le mouton joué du tableau précédent
+}
 
 void deplacerLoup(int x,int y)          // Procédure de déplacement des loups
 {
