@@ -19,21 +19,21 @@
 
 // Déclaration des objets de l'interface
 
-extern Fl_Double_Window*   gFenetre ;
-extern ZoneDessin*         gZoneDessin ;
+extern Fl_Double_Window   *gFenetre ;
+extern ZoneDessin         *gZoneDessin ;
 
-extern Fl_Button*          gBoutonStartPause ;
-extern Fl_Button*          gBoutonPasPas ;
-extern Fl_Button*          gBoutonReset ;
-extern Fl_Button*          gBoutonQuitter ;
+extern Fl_Button          *gBoutonStartPause ;
+extern Fl_Button          *gBoutonPasPas ;
+extern Fl_Button          *gBoutonReset ;
+extern Fl_Button          *gBoutonQuitter ;
 
-extern Fl_Value_Slider*    gCurseurNatalite;
-extern Fl_Value_Slider*    gCurseurMortalite;
-extern Fl_Value_Slider*    gCurseurTpsTransition;
-extern Fl_Value_Slider*    gCurseurMouton;
-extern Fl_Value_Slider*    gCurseurLoup;
+extern Fl_Value_Slider    *gCurseurNatalite;
+extern Fl_Value_Slider    *gCurseurMortalite;
+extern Fl_Value_Slider    *gCurseurTpsTransition;
+extern Fl_Value_Slider    *gCurseurMouton;
+extern Fl_Value_Slider    *gCurseurLoup;
 
-extern Fl_Value_Slider*    gCusrseurRapportLM;
+extern Fl_Value_Slider    *gCusrseurRapportLM;
 extern Fl_GIF_Image *img_mouton;
 extern Fl_GIF_Image *img_debut;
 extern Fl_GIF_Image *img_loup;

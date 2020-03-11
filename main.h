@@ -12,23 +12,23 @@
 class ZoneDessin : public Fl_Widget
 {
 public:
-    ZoneDessin(int X,int Y,int W,int H) ;
-    void draw_callback( void (*Function) ( Fl_Widget* w, void* data), void* Data ) ;
-    void mouse_callback( void (*Function) ( Fl_Widget* w, void* data), void* Data ) ;
-    void keyboard_callback( void (*Function) ( Fl_Widget* w, void* data), void* Data ) ;
+    ZoneDessin(int X, int Y, int W, int H) ;
+    void draw_callback(void (*Function)(Fl_Widget *w, void *data), void *Data) ;
+    void mouse_callback(void (*Function)(Fl_Widget *w, void *data), void *Data) ;
+    void keyboard_callback(void (*Function)(Fl_Widget *w, void *data), void *Data) ;
 
 private :
     void draw() ;
     int handle(int event) ;
 
-    void (*_draw_callback_function) ( Fl_Widget* w, void* data) ;
-    void* _draw_callback_data ;
+    void (*_draw_callback_function)(Fl_Widget *w, void *data) ;
+    void *_draw_callback_data ;
 
-    void (*_mouse_callback_function) ( Fl_Widget* w, void* data) ;
-    void* _mouse_callback_data ;
+    void (*_mouse_callback_function)(Fl_Widget *w, void *data) ;
+    void *_mouse_callback_data ;
 
-    void (*_keyboard_callback_function) ( Fl_Widget* w, void* data) ;
-    void* _keyboard_callback_data ;
+    void (*_keyboard_callback_function)(Fl_Widget *w, void *data) ;
+    void *_keyboard_callback_data ;
 };
 
 

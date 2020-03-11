@@ -16,33 +16,35 @@
 
 
 //Déclaration des variables globales
-int gTour, gStepByStep, gPlay, gReset, gGameOver,gTimeOver, gStart, gWinner, gNB_MOUTONS_INITIAUX, gNB_LOUPS_INITIAUX;
+int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart, gWinner, gNB_MOUTONS_INITIAUX, gNB_LOUPS_INITIAUX;
 float gTpsTransition;
 float gMortaliteLoup, gNataliteMouton;
-int gTableauJeu[TAILLE_MATRICE+2][TAILLE_MATRICE+2][2];
+int gTableauJeu[TAILLE_MATRICE + 2][TAILLE_MATRICE + 2][2];
 
 //Initialisation au lacement du programme
-void firstinitialiser(){
-    gStart=1;                   //Le programme vient d're lancé
-    gNB_MOUTONS_INITIAUX=2000;  //valeur par défaut
-    gNB_LOUPS_INITIAUX=2000;
+void firstinitialiser()
+{
+    gStart = 1;                 //Le programme vient d're lancé
+    gNB_MOUTONS_INITIAUX = 2000; //valeur par défaut
+    gNB_LOUPS_INITIAUX = 2000;
 }
 
 
-void Initialiser(){
+void Initialiser()
+{
     srand(time(NULL)); //on initialise rand()
 
     /* On définie les diffrentes variables */
 
-    gTour=0;
-    gGameOver=0;
-    gTimeOver=0;
-    gStepByStep=0;
-    gPlay=0;
-    gTpsTransition=1;
-    gMortaliteLoup=0.1;
-    gNataliteMouton=0.1;
-    gWinner=VIDE;
+    gTour = 0;
+    gGameOver = 0;
+    gTimeOver = 0;
+    gStepByStep = 0;
+    gPlay = 0;
+    gTpsTransition = 1;
+    gMortaliteLoup = 0.1;
+    gNataliteMouton = 0.1;
+    gWinner = VIDE;
 
 
     //On vide la tableau de jeu
@@ -50,27 +52,31 @@ void Initialiser(){
     setTab(1);
 
     //On place les moutons aléatoirement dans le tableau de jeu
-    int x,y;
-    int n=0;
-    do{
-        x=rand()%TAILLE_MATRICE+1;
-        y=rand()%TAILLE_MATRICE+1;
-        if(isVacant(x,y,0)){
-            gTableauJeu[x][y][0]=MOUTON;
+    int x, y;
+    int n = 0;
+
+    do {
+        x = rand() % TAILLE_MATRICE + 1;
+        y = rand() % TAILLE_MATRICE + 1;
+
+        if (isVacant(x, y, 0)) {
+            gTableauJeu[x][y][0] = MOUTON;
             n++;
         }
-    }while(n<gNB_MOUTONS_INITIAUX);
+    } while (n < gNB_MOUTONS_INITIAUX);
 
     //On place les loups aléatoirment dans le tableau de jeu
-    n=0;
-       do{
-        x=rand()%TAILLE_MATRICE+1;
-        y=rand()%TAILLE_MATRICE+1;
-        if(isVacant(x,y,0)){
-            gTableauJeu[x][y][0]=LOUP;
+    n = 0;
+
+    do {
+        x = rand() % TAILLE_MATRICE + 1;
+        y = rand() % TAILLE_MATRICE + 1;
+
+        if (isVacant(x, y, 0)) {
+            gTableauJeu[x][y][0] = LOUP;
             n++;
         }
-    }while(n<gNB_LOUPS_INITIAUX);
+    } while (n < gNB_LOUPS_INITIAUX);
 
     //On initialise certains élément de l'interface
     gCurseurNatalite->value(gNataliteMouton);
@@ -90,46 +96,50 @@ void Initialiser(){
 
 
 // TraiterCycle
-void TraiterCycle(){
+void TraiterCycle()
+{
 
     //Si le jeu est lancé, on déplace les animaux
-    if (gPlay){
-            deplacement();
-            gTour++;
-        }
+    if (gPlay) {
+        deplacement();
+        gTour++;
+    }
     //Si le jeu est en mode "Pas à pas", on déplace les animaux et on sort du pas à pas
-    else if (gStepByStep)
-        {
-            deplacement();
-            gStepByStep=0;
-            gTour++;
+    else if (gStepByStep) {
+        deplacement();
+        gStepByStep = 0;
+        gTour++;
 
-        }
+    }
 
     //Si l'utilsateur a cliqueé qur "Reset", on initialise le jeu
-    if (gReset){
+    if (gReset) {
         Initialiser();
-        gReset=0;
+        gReset = 0;
     }
+
     // On redessine la zone
     gZoneDessin->redraw() ;
     //On actualise la valeur du rapport
     gCusrseurRapportLM->value(rapport());
 
     //Si il n'y a plus de loups, on attend 10 tours et on met fin au jeu
-    if (rapport()==0){
+    if (rapport() == 0) {
         gTimeOver++;
-        if(gTimeOver>10){
-            gGameOver=1;
-			gWinner=MOUTON;
+
+        if (gTimeOver > 10) {
+            gGameOver = 1;
+            gWinner = MOUTON;
         }
     }
+
     //Si il n'y a plus de mouton, on attend 10 tours et on arrette le jeu
-    if (rapport()==-1){
+    if (rapport() == -1) {
         gTimeOver++;
-        if(gTimeOver>10){
-            gGameOver=1;
-			gWinner=LOUP;
+
+        if (gTimeOver > 10) {
+            gGameOver = 1;
+            gWinner = LOUP;
         }
     }
 }
@@ -144,14 +154,14 @@ void BoutonQuitterCB(Fl_Widget *, void *)
 
 void BoutonStartPauseCB(Fl_Widget *, void *)
 {
-    gPlay=1-gPlay;  // on inverse la valuer de gPlay   0 <-> 1
-    gStart=0;       //Le jeu est lancé
-    if(gPlay){
+    gPlay = 1 - gPlay; // on inverse la valuer de gPlay   0 <-> 1
+    gStart = 0;     //Le jeu est lancé
+
+    if (gPlay) {
         gBoutonPasPas->deactivate() ;                                    // Lorsque le jeu se lance, on bloque les boutons et curseurs
         gCurseurMouton->deactivate();
         gCurseurLoup->deactivate();
-    }
-    else{
+    } else {
         gBoutonPasPas->activate() ;                                     // On les réactive lorsqu'on arrête le jeu
         gCurseurMouton->activate() ;
         gCurseurLoup->activate();
@@ -161,15 +171,15 @@ void BoutonStartPauseCB(Fl_Widget *, void *)
 
 void BoutonPasPasCB(Fl_Widget *, void *)
 {
-    gStepByStep=1;                                                      // Avance d'un tour à chaque clic
-    gStart=0;
+    gStepByStep = 1;                                                    // Avance d'un tour à chaque clic
+    gStart = 0;
 
 }
 
 void BoutonResetCB(Fl_Widget *, void *)
 {
-    gReset=1;                                                           // Relance le jeu
-    gStart=0;
+    gReset = 1;                                                         // Relance le jeu
+    gStart = 0;
 }
 
 
