@@ -185,7 +185,7 @@ void deplacerLoup(int x,int y)          // Procédure de déplacement des loups
             count++;
         }
                         // Sortie si la case est trouvée, ou si le compteur atteint 10
-        while(!isVacant(a,b,1-p) || !isVacant(a,b,p) && count<10);
+        while((!isVacant(a,b,1-p) || !isVacant(a,b,p)) && count<10);
 
         if(!isSick()){ //Si le loup n'est pas malade
             if(count<10)           // Si le compteur est inférieur à 10
@@ -239,6 +239,7 @@ float rapport() //calcul le rapport loup/mouton
         return -1; //Valeur impssible
     else
         r=nbLoup/nbMouton; // Sinon on peut faire le ratio
-        return r;
+    
+    return r;
 }
 

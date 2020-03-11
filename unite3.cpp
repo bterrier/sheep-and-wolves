@@ -91,7 +91,6 @@ void Initialiser(){
 
 // TraiterCycle
 void TraiterCycle(){
-    int x, y;
 
     //Si le jeu est lancé, on déplace les animaux
     if (gPlay){
@@ -137,13 +136,13 @@ void TraiterCycle(){
 
 
 
-void BoutonQuitterCB(Fl_Widget* w, void* data)
+void BoutonQuitterCB(Fl_Widget *, void *)
 {
     // Fin du programme
     exit(0) ;
 }
 
-void BoutonStartPauseCB(Fl_Widget* w, void* data)
+void BoutonStartPauseCB(Fl_Widget *, void *)
 {
     gPlay=1-gPlay;  // on inverse la valuer de gPlay   0 <-> 1
     gStart=0;       //Le jeu est lancé
@@ -160,46 +159,45 @@ void BoutonStartPauseCB(Fl_Widget* w, void* data)
 
 }
 
-void BoutonPasPasCB(Fl_Widget* w, void* data)
+void BoutonPasPasCB(Fl_Widget *, void *)
 {
     gStepByStep=1;                                                      // Avance d'un tour à chaque clic
     gStart=0;
 
 }
 
-void BoutonResetCB(Fl_Widget* w, void* data)
+void BoutonResetCB(Fl_Widget *, void *)
 {
     gReset=1;                                                           // Relance le jeu
     gStart=0;
-
 }
 
 
-void CurseurNataliteCB(Fl_Widget* w, void* data)
+void CurseurNataliteCB(Fl_Widget *, void *)
 {
     gNataliteMouton = gCurseurNatalite->value() ;                       //On récupére la valeur
 
 }
 
-void CurseurMortaliteCB(Fl_Widget* w, void* data)
+void CurseurMortaliteCB(Fl_Widget *, void *)
 {
     gMortaliteLoup = gCurseurMortalite->value() ;                       //On récupére la valeur
 
 }
 
-void CurseurTpsTransitionCB(Fl_Widget* w, void* data)                   // Change le temps de transition entre chaque tour
+void CurseurTpsTransitionCB(Fl_Widget *, void *)                   // Change le temps de transition entre chaque tour
 {
     gTpsTransition = gCurseurTpsTransition->value() ;
 
 }
 
-void CurseurMoutonCB(Fl_Widget* w, void* data)                          // Permet de changer le nombre de moutons initial
+void CurseurMoutonCB(Fl_Widget *, void *)                          // Permet de changer le nombre de moutons initial
 {
     gNB_MOUTONS_INITIAUX = (int)gCurseurMouton->value() ;               //On récupére la valeur
     Initialiser() ;                                                     //On initialise avec la nouvelle valeur
 }
 
-void CurseurLoupCB(Fl_Widget* w, void* data)                            // Permet de changer le nombre de loups initial
+void CurseurLoupCB(Fl_Widget *, void *)                            // Permet de changer le nombre de loups initial
 {
     gNB_LOUPS_INITIAUX = (int)gCurseurLoup->value() ;                   //On récupére la valeur
     Initialiser();                                                      //On initialise avec la nouvelle valeur

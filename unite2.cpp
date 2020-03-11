@@ -13,7 +13,7 @@
 
 
 // DessinerZone
-void ZoneDessinDessinerCB( Fl_Widget* widget, void* data )
+void ZoneDessinDessinerCB(Fl_Widget *, void *)
 {
 	if(!gGameOver && !gStart)
 	{
