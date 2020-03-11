@@ -1,8 +1,9 @@
-#include "unite1.h"
-#include "unite3.h"
 #include "unite4.h"
 
 #include <cstdlib>
+
+#include "unite1.h"
+#include "unite3.h"
 
 bool isSick()                // Fonction de maladie d'un loup
 {

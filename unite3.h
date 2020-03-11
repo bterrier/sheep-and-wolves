@@ -7,9 +7,6 @@
 
 
 // Déclaration des données du projet
-
-
-
 #define TAILLE_MATRICE  200
 #define VIDE 0
 #define MOUTON 1

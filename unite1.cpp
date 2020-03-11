@@ -1,9 +1,10 @@
 // Déclarations externes
-#include <stdio.h>
 #include "unite1.h"
+
+#include <FL/Fl_GIF_Image.H>
+
 #include "unite2.h"
 #include "unite3.h"
-#include <FL/Fl_GIF_Image.H>
 
 // Définition des objets de l'interface
 Fl_Double_Window   *gFenetre ;
@@ -23,9 +24,9 @@ Fl_Value_Slider    *gCusrseurRapportLM;
 
 // Définition des images
 
-Fl_GIF_Image *img_mouton = NULL; //("mouton.gif");
-Fl_GIF_Image *img_debut = NULL;   //("debut.gif");
-Fl_GIF_Image *img_loup = NULL;   //("loup.gif");
+Fl_GIF_Image *img_mouton = nullptr; //("mouton.gif");
+Fl_GIF_Image *img_debut = nullptr;   //("debut.gif");
+Fl_GIF_Image *img_loup = nullptr;   //("loup.gif");
 
 Fl_Color vert = fl_rgb_color(87, 153, 40);
 

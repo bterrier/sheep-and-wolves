@@ -1,7 +1,7 @@
 /*  Projet Loups et Moutons : unite3.cpp    Dernière modification : 30/05/2009 */
+#include "unite3.h"
 
-// Inclusion des fichiers d'entête
-#include <stdlib.h>     // exit, rand
+#include <cstdlib>     // exit, rand
 #include <ctime>       // time
 
 #include <FL/Fl.H>
@@ -11,7 +11,6 @@
 
 #include "unite1.h"     // objets graphiques pZoneDessin, pChampValeur, ...
 #include "unite2.h"
-#include "unite3.h"
 #include "unite4.h"
 
 
@@ -32,7 +31,7 @@ void firstinitialiser()
 
 void Initialiser()
 {
-    srand(time(NULL)); //on initialise rand()
+    std::srand(std::time(NULL)); //on initialise rand()
 
     /* On définie les diffrentes variables */
 
@@ -88,12 +87,6 @@ void Initialiser()
     gBoutonPasPas->activate();
 
 }
-
-
-
-
-
-
 
 // TraiterCycle
 void TraiterCycle()

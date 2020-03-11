@@ -1,15 +1,13 @@
 // Déclarations externes
-#include <stdio.h>
-#include <stdlib.h>                 // exit, rand
-#include <time.h>                   // time
+#include "unite2.h"
+
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>             // fonctions de dessin
-#include <stdio.h>                  // printf, ...
+#include <FL/Fl_GIF_Image.H>
+
 #include "unite1.h"
-#include "unite2.h"
 #include "unite3.h"
 #include "unite4.h"
-#include <FL/Fl_GIF_Image.H>
 
 // DessinerZone
 void ZoneDessinDessinerCB(Fl_Widget *, void *)
