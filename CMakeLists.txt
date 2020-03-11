@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(loups-et-moutons LANGUAGES CXX)
+project(sheep-and-wolves LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -14,7 +14,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG "${EXECUTABLE_OUTPUT_PATH}" )
 
 find_package(FLTK REQUIRED)
 
-add_executable(loups-et-moutons WIN32
+add_executable(sheep-and-wolves WIN32
   main.cpp
   main.h
   unite1.cpp
@@ -27,7 +27,7 @@ add_executable(loups-et-moutons WIN32
   unite4.h
 )
 
-target_include_directories(loups-et-moutons PUBLIC ${FLTK_INCLUDE_DIR})
+target_include_directories(sheep-and-wolves PUBLIC ${FLTK_INCLUDE_DIR})
 
 set(IMAGE_TARGET_DIR ${EXECUTABLE_OUTPUT_PATH})
 
@@ -36,7 +36,7 @@ configure_file(loup.gif ${IMAGE_TARGET_DIR}/loup.gif COPYONLY)
 configure_file(debut.gif ${IMAGE_TARGET_DIR}/debut.gif COPYONLY)
 
 
-target_link_libraries(loups-et-moutons ${FLTK_LIBRARIES})
+target_link_libraries(sheep-and-wolves ${FLTK_LIBRARIES})
 
 if(${VCPKG_TARGET_TRIPLET} MATCHES "static")
   set(CMAKE_CXX_FLAGS_RELEASE "/MT")
