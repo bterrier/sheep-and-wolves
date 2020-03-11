@@ -5,9 +5,6 @@
 // Déclarations externes
 #include <FL/Fl_Widget.H>
 
-// Définition des constantes
-#define DUREE_CYCLE 0.1   // 0.500 secondes
-
 // Déclaration de la classe ZoneDessin
 class ZoneDessin : public Fl_Widget
 {
@@ -18,8 +15,8 @@ public:
     void keyboard_callback(void (*Function)(Fl_Widget *w, void *data), void *Data) ;
 
 private :
-    void draw() ;
-    int handle(int event) ;
+    void draw() override;
+    int handle(int event) override;
 
     void (*_draw_callback_function)(Fl_Widget *w, void *data) ;
     void *_draw_callback_data ;

@@ -12,10 +12,10 @@
 #include <FL/Fl_GIF_Image.H>
 
 // Définition des constantes
-#define X_ZONE  10      // X de la zone
-#define Y_ZONE  10      // Y de la zone
-#define L_ZONE  400     // Largeur de la zone
-#define H_ZONE  400     // Hauteur de la zone
+constexpr int X_ZONE = 10;      // X de la zone
+constexpr int Y_ZONE = 10;      // Y de la zone
+constexpr int L_ZONE = 400;     // Largeur de la zone
+constexpr int H_ZONE = 400;     // Hauteur de la zone
 
 // Déclaration des objets de l'interface
 

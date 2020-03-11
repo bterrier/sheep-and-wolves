@@ -7,12 +7,13 @@
 
 
 // Déclaration des données du projet
-#define TAILLE_MATRICE  200
-#define VIDE 0
-#define MOUTON 1
-#define LOUP -1
-#define BORD 99
-
+constexpr int TAILLE_MATRICE = 200;
+enum Type {
+    VIDE = 0,
+    MOUTON = 1,
+    LOUP = -1,
+    BORD = 99
+};
 
 // Donnees du projet
 
