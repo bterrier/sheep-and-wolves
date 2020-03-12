@@ -44,14 +44,14 @@ int main()
 ZoneDessin::ZoneDessin(int X, int Y, int W, int H)
     : Fl_Widget(X, Y, W, H)
 {
-    _draw_callback_function = NULL ;
-    _draw_callback_data = NULL ;
+    _draw_callback_function = nullptr ;
+    _draw_callback_data = nullptr ;
 
-    _mouse_callback_function = NULL ;
-    _mouse_callback_data = NULL ;
+    _mouse_callback_function = nullptr ;
+    _mouse_callback_data = nullptr ;
 
-    _keyboard_callback_function = NULL ;
-    _keyboard_callback_data = NULL ;
+    _keyboard_callback_function = nullptr ;
+    _keyboard_callback_data = nullptr ;
 }
 
 
@@ -79,7 +79,7 @@ void ZoneDessin::keyboard_callback(void (*Function)(Fl_Widget *w, void *data), v
 // Méthode de dessin de la zone de dessin
 void ZoneDessin::draw()
 {
-    if (_draw_callback_function != NULL)
+    if (_draw_callback_function)
         (* _draw_callback_function)(this, _draw_callback_data) ;
 }
 
@@ -90,14 +90,14 @@ int ZoneDessin::handle(int event)
     case FL_PUSH :
     case FL_RELEASE :
     case FL_DRAG :
-        if (_mouse_callback_function != NULL)
+        if (_mouse_callback_function)
             (* _mouse_callback_function)(this, _mouse_callback_data) ;
 
         return 1 ;
         break ;
 
     case FL_KEYBOARD:
-        if (_keyboard_callback_function != NULL)
+        if (_keyboard_callback_function)
             (* _keyboard_callback_function)(this, _keyboard_callback_data) ;
 
         return 1 ;
@@ -120,7 +120,7 @@ void CycleCB(void *)
     TraiterCycle() ;
 
     // Rearmement de la fonction cyclique
-    Fl::add_timeout(gTpsTransition, CycleCB, NULL) ;
+    Fl::add_timeout(gTpsTransition, CycleCB, nullptr) ;
 }
 
 

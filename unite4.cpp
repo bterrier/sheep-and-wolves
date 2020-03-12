@@ -115,14 +115,14 @@ void deplacerMouton(int x, int y)           // Procédure déplacant les moutons
 void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
 {
     int p = gTour % 2;
-    int moutonici = 0;              // Indicateur de présence d'un mouton
+    bool moutonici = false;              // Indicateur de présence d'un mouton
     int moutonx, moutony;           // Coordonées d'un mouton
 
     for (int i = -1; i <= 1 && !moutonici; i++) { // Balayage des cases tant que le loup n'a pas trouvé de mouton
         for (int j = -1; j <= 1 && !moutonici; j++) {
             // S'il en trouve un
             if (gTableauJeu[x + i][y + j][1 - p] == MOUTON || gTableauJeu[x + i][y + j][p] == MOUTON) {
-                moutonici = 1;
+                moutonici = true;
                 moutonx = x + i;    //Définition des coordonées du mouton vu par le loup
                 moutony = y + j;
             }

@@ -42,7 +42,7 @@ void CreerFenetre()
 
         // Création de la zone de dessin
         gZoneDessin = new ZoneDessin(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
-        gZoneDessin->draw_callback(ZoneDessinDessinerCB, NULL) ;
+        gZoneDessin->draw_callback(ZoneDessinDessinerCB, nullptr) ;
 
         img_mouton = new Fl_GIF_Image("mouton.gif");
         img_debut = new Fl_GIF_Image("debut.gif");
@@ -54,22 +54,22 @@ void CreerFenetre()
 
         // Création du bouton Start/Pause
         gBoutonStartPause = new Fl_Button(440, 10, 100, 30, "Start/Pause") ;                // Positionnement et affichage du nom du bouton
-        gBoutonStartPause->callback(BoutonStartPauseCB, NULL) ;                             // Lien avec la programmation
+        gBoutonStartPause->callback(BoutonStartPauseCB, nullptr) ;                             // Lien avec la programmation
         gBoutonStartPause->box(FL_PLASTIC_UP_BOX);                                          // Type du bouton
 
         // Création du bouton Pas à pas
         gBoutonPasPas = new Fl_Button(440, 50, 100, 30, "Pas a Pas") ;
-        gBoutonPasPas->callback(BoutonPasPasCB, NULL) ;
+        gBoutonPasPas->callback(BoutonPasPasCB, nullptr) ;
         gBoutonPasPas->box(FL_PLASTIC_UP_BOX);
 
         // Création du bouton Reset
         gBoutonReset = new Fl_Button(440, 90, 100, 30, "Reset") ;
-        gBoutonReset->callback(BoutonResetCB, NULL) ;
+        gBoutonReset->callback(BoutonResetCB, nullptr) ;
         gBoutonReset->box(FL_ROUND_UP_BOX);
 
         // Création du bouton Quitter
         gBoutonQuitter = new Fl_Button(440, 440, 100, 30, "Quitter") ;
-        gBoutonQuitter->callback(BoutonQuitterCB, NULL) ;
+        gBoutonQuitter->callback(BoutonQuitterCB, nullptr) ;
         gBoutonQuitter->box(FL_OSHADOW_BOX);
 
     }
@@ -80,7 +80,7 @@ void CreerFenetre()
         gCurseurNatalite = new Fl_Value_Slider(440, 160, 100, 25, "Natalite") ;             // Positionnement et affichage du nom du curseur natalité
         gCurseurNatalite->type(FL_HOR_NICE_SLIDER) ;                                        // Type de curseur
         gCurseurNatalite->align(FL_ALIGN_TOP) ;                                             // Alignement au milieu et en haut du nom du curseur (par rapport au curseur)
-        gCurseurNatalite->callback(CurseurNataliteCB, NULL) ;                               // Lien avec la programmation
+        gCurseurNatalite->callback(CurseurNataliteCB, nullptr) ;                               // Lien avec la programmation
         gCurseurNatalite->bounds(0, 1);                                                     // Borne du curseur
         gCurseurNatalite->precision(2);                                                     // Précision du curseur en nombre de décimale
         gCurseurNatalite->value(gNataliteMouton);                                           // Lien avec la programmation
@@ -89,7 +89,7 @@ void CreerFenetre()
         gCurseurMortalite = new Fl_Value_Slider(440, 215, 100, 25, "Mortalite") ;
         gCurseurMortalite->type(FL_HOR_NICE_SLIDER) ;
         gCurseurMortalite->align(FL_ALIGN_TOP) ;
-        gCurseurMortalite->callback(CurseurMortaliteCB, NULL) ;
+        gCurseurMortalite->callback(CurseurMortaliteCB, nullptr) ;
         gCurseurMortalite->bounds(0, 1);
         gCurseurMortalite->precision(2);
         gCurseurMortalite->value(gMortaliteLoup);
