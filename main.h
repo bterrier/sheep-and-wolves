@@ -1,4 +1,4 @@
-// Sentinelle d'inclusion
+﻿// Sentinelle d'inclusion
 #ifndef _Main_h
 #define _Main_h
 
@@ -9,23 +9,25 @@
 class ZoneDessin : public Fl_Widget
 {
 public:
-    ZoneDessin(int X, int Y, int W, int H) ;
-    void draw_callback(void (*Function)(Fl_Widget *w, void *data), void *Data) ;
-    void mouse_callback(void (*Function)(Fl_Widget *w, void *data), void *Data) ;
-    void keyboard_callback(void (*Function)(Fl_Widget *w, void *data), void *Data) ;
+    using Callback = void(Fl_Widget *w, void *data);
+
+    ZoneDessin(int x, int y, int width, int height) ;
+    void draw_callback(Callback *function, void *data) ;
+    void mouse_callback(Callback *function, void *data) ;
+    void keyboard_callback(Callback *function, void *data) ;
 
 private :
     void draw() override;
     int handle(int event) override;
 
-    void (*_draw_callback_function)(Fl_Widget *w, void *data) ;
-    void *_draw_callback_data ;
+    Callback *_draw_callback_function = nullptr;
+    void *_draw_callback_data = nullptr;
 
-    void (*_mouse_callback_function)(Fl_Widget *w, void *data) ;
-    void *_mouse_callback_data ;
+    Callback *_mouse_callback_function = nullptr;
+    void *_mouse_callback_data = nullptr;
 
-    void (*_keyboard_callback_function)(Fl_Widget *w, void *data) ;
-    void *_keyboard_callback_data ;
+    Callback *_keyboard_callback_function = nullptr;
+    void *_keyboard_callback_data = nullptr;
 };
 
 

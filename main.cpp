@@ -41,46 +41,37 @@ int main()
 }
 
 
-ZoneDessin::ZoneDessin(int X, int Y, int W, int H)
-    : Fl_Widget(X, Y, W, H)
-{
-    _draw_callback_function = nullptr ;
-    _draw_callback_data = nullptr ;
-
-    _mouse_callback_function = nullptr ;
-    _mouse_callback_data = nullptr ;
-
-    _keyboard_callback_function = nullptr ;
-    _keyboard_callback_data = nullptr ;
-}
+ZoneDessin::ZoneDessin(int x, int y, int width, int height) :
+    Fl_Widget(x, y, width, height)
+{}
 
 
 // Méthode draw_callback
-void ZoneDessin::draw_callback(void (*Function)(Fl_Widget *w, void *data), void *Data)
+void ZoneDessin::draw_callback(Callback *function, void *data)
 {
-    _draw_callback_function = Function ;
-    _draw_callback_data = Data ;
+    _draw_callback_function = function;
+    _draw_callback_data = data;
 }
 
 // Méthode mouse_callback
-void ZoneDessin::mouse_callback(void (*Function)(Fl_Widget *w, void *data), void *Data)
+void ZoneDessin::mouse_callback(Callback *function, void *data)
 {
-    _mouse_callback_function = Function ;
-    _mouse_callback_data = Data ;
+    _mouse_callback_function = function;
+    _mouse_callback_data = data;
 }
 
 // Méthode keyboard_callback
-void ZoneDessin::keyboard_callback(void (*Function)(Fl_Widget *w, void *data), void *Data)
+void ZoneDessin::keyboard_callback(Callback *function, void *data)
 {
-    _keyboard_callback_function = Function ;
-    _keyboard_callback_data = Data ;
+    _keyboard_callback_function = function;
+    _keyboard_callback_data = data;
 }
 
 // Méthode de dessin de la zone de dessin
 void ZoneDessin::draw()
 {
     if (_draw_callback_function)
-        (* _draw_callback_function)(this, _draw_callback_data) ;
+        _draw_callback_function(this, _draw_callback_data);
 }
 
 // Méthode de gestion des événements dans la zone de dessin
@@ -91,22 +82,18 @@ int ZoneDessin::handle(int event)
     case FL_RELEASE :
     case FL_DRAG :
         if (_mouse_callback_function)
-            (* _mouse_callback_function)(this, _mouse_callback_data) ;
+            _mouse_callback_function(this, _mouse_callback_data);
 
         return 1 ;
-        break ;
 
     case FL_KEYBOARD:
         if (_keyboard_callback_function)
-            (* _keyboard_callback_function)(this, _keyboard_callback_data) ;
+            _keyboard_callback_function(this, _keyboard_callback_data);
 
         return 1 ;
-        break ;
 
     case FL_FOCUS:
         return 1 ;
-        break ;
-
 
     default:
         return Fl_Widget::handle(event);
