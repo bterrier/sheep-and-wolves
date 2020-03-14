@@ -32,7 +32,8 @@ int main()
     Initialiser() ;
 
     // Create the window
-    CreerFenetre() ;
+    window = new MainWindow();
+    window->show();
 
 
     // Armement de la fonction cyclique

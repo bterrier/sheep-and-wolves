@@ -18,31 +18,34 @@ constexpr int Y_ZONE = 10;      // Y de la zone
 constexpr int L_ZONE = 400;     // Largeur de la zone
 constexpr int H_ZONE = 400;     // Hauteur de la zone
 
-// Déclaration des objets de l'interface
 
-extern Fl_Double_Window   *gFenetre ;
-extern ZoneDessin         *gZoneDessin ;
+class MainWindow : public Fl_Double_Window
+{
+public:
 
-extern Fl_Button          *gBoutonStartPause ;
-extern Fl_Button          *gBoutonPasPas ;
-extern Fl_Button          *gBoutonReset ;
-extern Fl_Button          *gBoutonQuitter ;
-
-extern Fl_Value_Slider    *gCurseurNatalite;
-extern Fl_Value_Slider    *gCurseurMortalite;
-extern Fl_Value_Slider    *gCurseurTpsTransition;
-extern Fl_Value_Slider    *gCurseurMouton;
-extern Fl_Value_Slider    *gCurseurLoup;
-
-extern Fl_Value_Slider    *gCusrseurRapportLM;
-extern Fl_GIF_Image *img_mouton;
-extern Fl_GIF_Image *img_debut;
-extern Fl_GIF_Image *img_loup;
-extern Fl_Color vert ;
+    MainWindow();
 
 
-// Déclaration des sous-programmes
-void CreerFenetre() ;
+    ZoneDessin         *gZoneDessin ;
+
+    Fl_Button          *gBoutonStartPause ;
+    Fl_Button          *gBoutonPasPas ;
+    Fl_Button          *gBoutonReset ;
+    Fl_Button          *gBoutonQuitter ;
+
+    Fl_Value_Slider    *gCurseurNatalite;
+    Fl_Value_Slider    *gCurseurMortalite;
+    Fl_Value_Slider    *gCurseurTpsTransition;
+    Fl_Value_Slider    *gCurseurMouton;
+    Fl_Value_Slider    *gCurseurLoup;
+
+    Fl_Value_Slider    *gCusrseurRapportLM;
+    Fl_GIF_Image *img_mouton;
+    Fl_GIF_Image *img_debut;
+    Fl_GIF_Image *img_loup;
+    Fl_Color vert;
+};
+extern MainWindow *window;
 
 #endif // unite1_h
 

@@ -70,10 +70,10 @@ void TraiterCycle()
     }
 
     // On redessine la zone
-    gZoneDessin->redraw() ;
+    window->gZoneDessin->redraw() ;
     //On actualise la valeur du rapport
     const auto ratio = game->ratio();
-    gCusrseurRapportLM->value(ratio);
+    window->gCusrseurRapportLM->value(ratio);
 
     //Si il n'y a plus de loups, on attend 10 tours et on met fin au jeu
     if (ratio == 0) {
@@ -110,13 +110,13 @@ void BoutonStartPauseCB(Fl_Widget *, void *)
     gStart = 0;     //Le jeu est lancé
 
     if (gPlay) {
-        gBoutonPasPas->deactivate() ;                                    // Lorsque le jeu se lance, on bloque les boutons et curseurs
-        gCurseurMouton->deactivate();
-        gCurseurLoup->deactivate();
+        window->gBoutonPasPas->deactivate() ;                                    // Lorsque le jeu se lance, on bloque les boutons et curseurs
+        window->gCurseurMouton->deactivate();
+        window->gCurseurLoup->deactivate();
     } else {
-        gBoutonPasPas->activate() ;                                     // On les réactive lorsqu'on arrête le jeu
-        gCurseurMouton->activate() ;
-        gCurseurLoup->activate();
+        window->gBoutonPasPas->activate() ;                                     // On les réactive lorsqu'on arrête le jeu
+        window->gCurseurMouton->activate() ;
+        window->gCurseurLoup->activate();
     }
 
 }
@@ -137,28 +137,28 @@ void BoutonResetCB(Fl_Widget *, void *)
 
 void CurseurNataliteCB(Fl_Widget *, void *)
 {
-    game->setSheepBirthRate(gCurseurNatalite->value());
+    game->setSheepBirthRate(window->gCurseurNatalite->value());
 }
 
 void CurseurMortaliteCB(Fl_Widget *, void *)
 {
-    game->setWolfDeathRate(gCurseurMortalite->value());
+    game->setWolfDeathRate(window->gCurseurMortalite->value());
 }
 
 void CurseurTpsTransitionCB(Fl_Widget *, void *)                   // Change le temps de transition entre chaque tour
 {
-    gTpsTransition = gCurseurTpsTransition->value() ;
+    gTpsTransition = window->gCurseurTpsTransition->value() ;
 
 }
 
 void CurseurMoutonCB(Fl_Widget *, void *)                          // Permet de changer le nombre de moutons initial
 {
-    game->setInitialSheepCount(int(gCurseurMouton->value()));               //On récupére la valeur
+    game->setInitialSheepCount(int(window->gCurseurMouton->value()));               //On récupére la valeur
     Initialiser() ;                                                     //On initialise avec la nouvelle valeur
 }
 
 void CurseurLoupCB(Fl_Widget *, void *)                            // Permet de changer le nombre de loups initial
 {
-    game->setInitialWolfCount(int(gCurseurLoup->value()));                   //On récupére la valeur
+    game->setInitialWolfCount(int(window->gCurseurLoup->value()));                   //On récupére la valeur
     Initialiser();                                                      //On initialise avec la nouvelle valeur
 }

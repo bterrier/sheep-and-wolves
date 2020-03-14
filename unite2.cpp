@@ -13,7 +13,7 @@
 void ZoneDessinDessinerCB(Fl_Widget *, void *)
 {
     if (!gGameOver && !gStart) {
-		fl_color(vert);                                                     // On efface toute la zone ( en dessinant dessus un carré plein, vert )
+        fl_color(window->vert);                                                      // On efface toute la zone ( en dessinant dessus un carré plein, vert )
         fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
         int p = gTour % 2;
         int tailleAnimal = L_ZONE / Game::TAILLE_MATRICE;
@@ -27,12 +27,12 @@ void ZoneDessinDessinerCB(Fl_Widget *, void *)
                     fl_color(FL_BLACK);
                     fl_rectf(tailleAnimal * i + X_ZONE, tailleAnimal * j + Y_ZONE, tailleAnimal * 1, tailleAnimal * 1);
                 }
-			}
-		}
+            }
+        }
     } else if (gStart)                                                    // Image sur la zone de dessin lors du lancement du jeu
-		img_debut->draw(X_ZONE, Y_ZONE);
+        window->img_debut->draw(X_ZONE, Y_ZONE);
     else if (gWinner == LOUP)                                             // Image d'un loup lorsque les loups l'emportent
-		img_loup->draw(X_ZONE, Y_ZONE);
+        window->img_loup->draw(X_ZONE, Y_ZONE);
     else if (gWinner == MOUTON)                                           // Image d'un mouton lorsque les moutons l'emportent
-		img_mouton->draw(X_ZONE, Y_ZONE);
+        window->img_mouton->draw(X_ZONE, Y_ZONE);
 }

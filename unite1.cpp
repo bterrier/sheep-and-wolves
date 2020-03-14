@@ -7,49 +7,21 @@
 #include "unite3.h"
 #include "unite4.h"
 
-// Définition des objets de l'interface
-Fl_Double_Window   *gFenetre ;
-ZoneDessin         *gZoneDessin ;
-Fl_Button          *gBoutonStartPause;
-Fl_Button          *gBoutonPasPas;
-Fl_Button          *gBoutonReset;
-Fl_Button          *gBoutonQuitter ;
 
-Fl_Value_Slider    *gCurseurNatalite;
-Fl_Value_Slider    *gCurseurMortalite;
-Fl_Value_Slider    *gCurseurTpsTransition;
-Fl_Value_Slider    *gCurseurMouton;
-Fl_Value_Slider    *gCurseurLoup;
-
-Fl_Value_Slider    *gCusrseurRapportLM;
-
-// Définition des images
-
-Fl_GIF_Image *img_mouton = nullptr; //("mouton.gif");
-Fl_GIF_Image *img_debut = nullptr;   //("debut.gif");
-Fl_GIF_Image *img_loup = nullptr;   //("loup.gif");
-
-Fl_Color vert = fl_rgb_color(87, 153, 40);
-
-// CréerFenetre
-void CreerFenetre()
+MainWindow::MainWindow() :
+    Fl_Double_Window(560, 480),
+    vert(fl_rgb_color(87, 153, 40))
 {
-    {
+    label("Projet Loups et Moutons") ;                                        // Nom du programme
+    begin() ;
 
-        // Création de la fenêtre principale
-        gFenetre = new Fl_Double_Window(560, 480);                                          // Dimensionnement de la fenêtre principale
-        gFenetre->label("Projet Loups et Moutons") ;                                        // Nom du programme
-        gFenetre->begin() ;
+    // Création de la zone de dessin
+    gZoneDessin = new ZoneDessin(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
+    gZoneDessin->draw_callback(ZoneDessinDessinerCB, nullptr) ;
 
-        // Création de la zone de dessin
-        gZoneDessin = new ZoneDessin(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
-        gZoneDessin->draw_callback(ZoneDessinDessinerCB, nullptr) ;
-
-        img_mouton = new Fl_GIF_Image("mouton.gif");
-        img_debut = new Fl_GIF_Image("debut.gif");
-        img_loup = new Fl_GIF_Image("loup.gif");
-
-    }
+    img_mouton = new Fl_GIF_Image("mouton.gif");
+    img_debut = new Fl_GIF_Image("debut.gif");
+    img_loup = new Fl_GIF_Image("loup.gif");
 
     {
 
@@ -135,8 +107,7 @@ void CreerFenetre()
 
 
     // Affichage de la fenetre
-    gFenetre->end();
-    gFenetre->show();
+    end();
 
     //On initialise certains élément de l'interface
     gCurseurNatalite->value(game->sheepBirthRate());
@@ -147,5 +118,4 @@ void CreerFenetre()
     gBoutonPasPas->activate();
 }
 
-
-
+MainWindow *window = nullptr;
