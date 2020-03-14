@@ -25,6 +25,8 @@ add_executable(sheep-and-wolves WIN32
   unite3.h
   unite4.cpp
   unite4.h
+  drawarea.cpp
+  drawarea.h
 )
 
 target_include_directories(sheep-and-wolves PUBLIC ${FLTK_INCLUDE_DIR})

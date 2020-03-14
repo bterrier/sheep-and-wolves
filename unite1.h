@@ -3,13 +3,14 @@
 #define _unite1_h
 
 // Déclarations externes
-#include "main.h"
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Value_Output.H>
 #include <FL/Fl_Output.H>
 #include <FL/Fl_Value_Slider.H>
 #include <FL/Fl_GIF_Image.H>
+
+#include "drawarea.h"
 
 // Définition des constantes
 constexpr int X_ZONE = 10;      // X de la zone
