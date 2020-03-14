@@ -7,8 +7,40 @@ void deplacerLoup(int x, int y);
 void deplacement();
 void setTab(int p);
 [[nodiscard]] bool isVacant(int x, int y, int z);
-[[nodiscard]] bool isSick();
-[[nodiscard]] bool isPregnant();
+
 float rapport() ;
+
+class Game
+{
+public:
+    [[nodiscard]] bool isSick();
+    [[nodiscard]] bool isPregnant();
+
+    [[nodiscard]] constexpr float  wolfDeathRate() const noexcept
+    {
+        return gMortaliteLoup;
+    }
+
+    [[nodiscard]] constexpr float  sheepBirthRate() const noexcept
+    {
+        return gNataliteMouton;
+    }
+
+    void setWolfDeathRate(float deathRate)
+    {
+        gMortaliteLoup = deathRate;
+    }
+
+    void setSheepBirthRate(float birthRate)
+    {
+        gNataliteMouton = birthRate;
+    }
+
+private:
+    float gMortaliteLoup = 0.1;
+    float gNataliteMouton = 0.1;
+};
+
+extern Game *game;
 
 #endif // unite4_h

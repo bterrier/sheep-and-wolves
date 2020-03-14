@@ -19,7 +19,6 @@ enum Type {
 
 extern int gTour, gStepByStep, gPlay, gGameOver, gTimeOver, gStart, gWinner, gNB_MOUTONS_INITIAUX, gNB_LOUPS_INITIAUX;
 extern float gTpsTransition;
-extern float gMortaliteLoup, gNataliteMouton;
 // Flag quand le bouton Solution est sollicite
 
 

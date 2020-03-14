@@ -5,18 +5,30 @@
 #include "unite1.h"
 #include "unite3.h"
 
-bool isSick()                // Fonction de maladie d'un loup
+
+Game *game = nullptr;
+
+/*!
+ * \brief Random draw.
+ * \param rate Rate at which this function will return true. Must be between
+ * 0.0 and 1.0.
+ * \return Returns true with a probability of \a rate.
+ */
+static bool helper_random(float rate)
 {
-    int a = std::rand() % 100 + 1;                       // On choisit aléatoirement un entier entre 1 et 100
-    const bool isSick = a < gMortaliteLoup * 100;           // Si le nombre est inférieur à la mortalité
+    const int random = std::rand() % 100 + 1;                       // On choisit aléatoirement un entier entre 1 et 100
+    const bool isSick = random < rate * 100;           // Si le nombre est inférieur à rate
     return isSick;
 }
 
-bool isPregnant()                    // De meme que pour isSick
+bool Game::isSick()                // Fonction de maladie d'un loup
 {
-    int a = std::rand() % 100 + 1;
-    const bool isPregnant = a < gNataliteMouton * 100;
-    return isPregnant;
+    return helper_random(gMortaliteLoup);
+}
+
+bool Game::isPregnant()                    // De meme que pour isSick
+{
+    return helper_random(gNataliteMouton);
 }
 
 
@@ -100,7 +112,7 @@ void deplacerMouton(int x, int y)           // Procédure déplacant les moutons
         gTableauJeu[xfutur][yfutur][1 - p] = MOUTON;  // il déplace le mouton dans le nouveau tableau
 
 
-        if (isPregnant()) {           // Si le mouton est "enceinte"
+        if (game->isPregnant()) {           // Si le mouton est "enceinte"
             gTableauJeu[x][y][1 - p] = MOUTON;    // Il laisse un mouton derrière lui (dans le nouveau tableau)
 
         } else {
@@ -148,7 +160,7 @@ void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
         // Sortie si la case est trouvée, ou si le compteur atteint 10
         while ((!isVacant(a, b, 1 - p) || !isVacant(a, b, p)) && count < 10);
 
-        if (!isSick()) { //Si le loup n'est pas malade
+        if (!game->isSick()) { //Si le loup n'est pas malade
             if (count < 10) {      // Si le compteur est inférieur à 10
                 gTableauJeu[a][b][1 - p] = LOUP;    // On le déplace
 

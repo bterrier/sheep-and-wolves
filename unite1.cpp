@@ -5,6 +5,7 @@
 
 #include "unite2.h"
 #include "unite3.h"
+#include "unite4.h"
 
 // Définition des objets de l'interface
 Fl_Double_Window   *gFenetre ;
@@ -83,7 +84,7 @@ void CreerFenetre()
         gCurseurNatalite->callback(CurseurNataliteCB, nullptr) ;                               // Lien avec la programmation
         gCurseurNatalite->bounds(0, 1);                                                     // Borne du curseur
         gCurseurNatalite->precision(2);                                                     // Précision du curseur en nombre de décimale
-        gCurseurNatalite->value(gNataliteMouton);                                           // Lien avec la programmation
+        gCurseurNatalite->value(game->sheepBirthRate());                                           // Lien avec la programmation
 
         // Création du curseur Mortalité
         gCurseurMortalite = new Fl_Value_Slider(440, 215, 100, 25, "Mortalite") ;
@@ -92,7 +93,7 @@ void CreerFenetre()
         gCurseurMortalite->callback(CurseurMortaliteCB, nullptr) ;
         gCurseurMortalite->bounds(0, 1);
         gCurseurMortalite->precision(2);
-        gCurseurMortalite->value(gMortaliteLoup);
+        gCurseurMortalite->value(game->wolfDeathRate());
 
         //Création du curseur mouton
         gCurseurMouton = new Fl_Value_Slider(30, 440, 150, 25, "Nombre Moutons Initial") ;
@@ -136,6 +137,15 @@ void CreerFenetre()
     // Affichage de la fenetre
     gFenetre->end();
     gFenetre->show();
+
+    //On initialise certains élément de l'interface
+    gCurseurNatalite->value(game->sheepBirthRate());
+    gCurseurMortalite->value(game->wolfDeathRate());
+    gCurseurTpsTransition->value(gTpsTransition);
+    gCurseurMouton->value(gNB_MOUTONS_INITIAUX);
+    gCurseurLoup->activate();
+    gCurseurMouton->activate();
+    gBoutonPasPas->activate();
 }
 
 

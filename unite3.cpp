@@ -17,7 +17,6 @@
 //Déclaration des variables globales
 int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart, gWinner, gNB_MOUTONS_INITIAUX, gNB_LOUPS_INITIAUX;
 float gTpsTransition;
-float gMortaliteLoup, gNataliteMouton;
 int gTableauJeu[TAILLE_MATRICE + 2][TAILLE_MATRICE + 2][2];
 
 //Initialisation au lacement du programme
@@ -41,8 +40,7 @@ void Initialiser()
     gStepByStep = 0;
     gPlay = 0;
     gTpsTransition = 1;
-    gMortaliteLoup = 0.1;
-    gNataliteMouton = 0.1;
+    game = new Game();
     gWinner = VIDE;
 
 
@@ -76,15 +74,6 @@ void Initialiser()
             n++;
         }
     } while (n < gNB_LOUPS_INITIAUX);
-
-    //On initialise certains élément de l'interface
-    gCurseurNatalite->value(gNataliteMouton);
-    gCurseurMortalite->value(gMortaliteLoup);
-    gCurseurTpsTransition->value(gTpsTransition);
-    gCurseurMouton->value(gNB_MOUTONS_INITIAUX);
-    gCurseurLoup->activate();
-    gCurseurMouton->activate();
-    gBoutonPasPas->activate();
 
 }
 
@@ -178,14 +167,12 @@ void BoutonResetCB(Fl_Widget *, void *)
 
 void CurseurNataliteCB(Fl_Widget *, void *)
 {
-    gNataliteMouton = gCurseurNatalite->value() ;                       //On récupére la valeur
-
+    game->setSheepBirthRate(gCurseurNatalite->value());
 }
 
 void CurseurMortaliteCB(Fl_Widget *, void *)
 {
-    gMortaliteLoup = gCurseurMortalite->value() ;                       //On récupére la valeur
-
+    game->setWolfDeathRate(gCurseurMortalite->value());
 }
 
 void CurseurTpsTransitionCB(Fl_Widget *, void *)                   // Change le temps de transition entre chaque tour

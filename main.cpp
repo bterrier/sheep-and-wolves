@@ -27,11 +27,13 @@ int main()
     // initialise le logiciel
     firstinitialiser();
 
-    // Créer la fenetre
+
+    // Initialize the game
+    Initialiser() ;
+
+    // Create the window
     CreerFenetre() ;
 
-    // Initialise le jeu
-    Initialiser() ;
 
     // Armement de la fonction cyclique
     Fl::add_timeout(gTpsTransition, CycleCB, NULL) ;
