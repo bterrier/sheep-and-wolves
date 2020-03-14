@@ -23,78 +23,78 @@ MainWindow::MainWindow() :
     img_debut = new Fl_GIF_Image("debut.gif");
     img_loup = new Fl_GIF_Image("loup.gif");
 
-    {
 
-        // Création du bouton Start/Pause
-        gBoutonStartPause = new Fl_Button(440, 10, 100, 30, "Start/Pause") ;                // Positionnement et affichage du nom du bouton
-        gBoutonStartPause->callback(BoutonStartPauseCB, nullptr) ;                             // Lien avec la programmation
-        gBoutonStartPause->box(FL_PLASTIC_UP_BOX);                                          // Type du bouton
 
-        // Création du bouton Pas à pas
-        gBoutonPasPas = new Fl_Button(440, 50, 100, 30, "Pas a Pas") ;
-        gBoutonPasPas->callback(BoutonPasPasCB, nullptr) ;
-        gBoutonPasPas->box(FL_PLASTIC_UP_BOX);
+    // Création du bouton Start/Pause
+    gBoutonStartPause = new Fl_Button(440, 10, 100, 30, "Start/Pause") ;                // Positionnement et affichage du nom du bouton
+    gBoutonStartPause->callback(BoutonStartPauseCB, nullptr) ;                             // Lien avec la programmation
+    gBoutonStartPause->box(FL_PLASTIC_UP_BOX);                                          // Type du bouton
 
-        // Création du bouton Reset
-        gBoutonReset = new Fl_Button(440, 90, 100, 30, "Reset") ;
-        gBoutonReset->callback(BoutonResetCB, nullptr) ;
-        gBoutonReset->box(FL_ROUND_UP_BOX);
+    // Création du bouton Pas à pas
+    gBoutonPasPas = new Fl_Button(440, 50, 100, 30, "Pas a Pas") ;
+    gBoutonPasPas->callback(BoutonPasPasCB, nullptr) ;
+    gBoutonPasPas->box(FL_PLASTIC_UP_BOX);
 
-        // Création du bouton Quitter
-        gBoutonQuitter = new Fl_Button(440, 440, 100, 30, "Quitter") ;
-        gBoutonQuitter->callback(BoutonQuitterCB, nullptr) ;
-        gBoutonQuitter->box(FL_OSHADOW_BOX);
+    // Création du bouton Reset
+    gBoutonReset = new Fl_Button(440, 90, 100, 30, "Reset") ;
+    gBoutonReset->callback(BoutonResetCB, nullptr) ;
+    gBoutonReset->box(FL_ROUND_UP_BOX);
 
-    }
+    // Création du bouton Quitter
+    gBoutonQuitter = new Fl_Button(440, 440, 100, 30, "Quitter") ;
+    gBoutonQuitter->callback(BoutonQuitterCB, nullptr) ;
+    gBoutonQuitter->box(FL_OSHADOW_BOX);
 
-    {
 
-        // Création du curseur Natalité
-        gCurseurNatalite = new Fl_Value_Slider(440, 160, 100, 25, "Natalite") ;             // Positionnement et affichage du nom du curseur natalité
-        gCurseurNatalite->type(FL_HOR_NICE_SLIDER) ;                                        // Type de curseur
-        gCurseurNatalite->align(FL_ALIGN_TOP) ;                                             // Alignement au milieu et en haut du nom du curseur (par rapport au curseur)
-        gCurseurNatalite->callback(CurseurNataliteCB, nullptr) ;                               // Lien avec la programmation
-        gCurseurNatalite->bounds(0, 1);                                                     // Borne du curseur
-        gCurseurNatalite->precision(2);                                                     // Précision du curseur en nombre de décimale
-        gCurseurNatalite->value(game->sheepBirthRate());                                           // Lien avec la programmation
 
-        // Création du curseur Mortalité
-        gCurseurMortalite = new Fl_Value_Slider(440, 215, 100, 25, "Mortalite") ;
-        gCurseurMortalite->type(FL_HOR_NICE_SLIDER) ;
-        gCurseurMortalite->align(FL_ALIGN_TOP) ;
-        gCurseurMortalite->callback(CurseurMortaliteCB, nullptr) ;
-        gCurseurMortalite->bounds(0, 1);
-        gCurseurMortalite->precision(2);
-        gCurseurMortalite->value(game->wolfDeathRate());
 
-        //Création du curseur mouton
-        gCurseurMouton = new Fl_Value_Slider(30, 440, 150, 25, "Nombre Moutons Initial") ;
-        gCurseurMouton->type(FL_HOR_NICE_SLIDER) ;
-        gCurseurMouton->align(FL_ALIGN_TOP) ;
-        gCurseurMouton->callback(CurseurMoutonCB, NULL) ;
-        gCurseurMouton->bounds(1, 20000);
-        gCurseurMouton->value(game->initialSheepCount());
-        gCurseurMouton->precision(0);                                                   // Précision de la décimale (0 = entier)
 
-        //Création du curseur loup
-        gCurseurLoup = new Fl_Value_Slider(240, 440, 150, 25, "Nombre Loups Initial") ;
-        gCurseurLoup->type(FL_HOR_NICE_SLIDER) ;
-        gCurseurLoup->align(FL_ALIGN_TOP) ;
-        gCurseurLoup->callback(CurseurLoupCB, NULL) ;
-        gCurseurLoup->bounds(1, 20000);
-        gCurseurLoup->value(game->initialWolfCount());
-        gCurseurLoup->precision(0);
+    // Création du curseur Natalité
+    gCurseurNatalite = new Fl_Value_Slider(440, 160, 100, 25, "Natalite") ;             // Positionnement et affichage du nom du curseur natalité
+    gCurseurNatalite->type(FL_HOR_NICE_SLIDER) ;                                        // Type de curseur
+    gCurseurNatalite->align(FL_ALIGN_TOP) ;                                             // Alignement au milieu et en haut du nom du curseur (par rapport au curseur)
+    gCurseurNatalite->callback(CurseurNataliteCB, nullptr) ;                               // Lien avec la programmation
+    gCurseurNatalite->bounds(0, 1);                                                     // Borne du curseur
+    gCurseurNatalite->precision(2);                                                     // Précision du curseur en nombre de décimale
+    gCurseurNatalite->value(game->sheepBirthRate());                                           // Lien avec la programmation
 
-        // Création du curseur Temps de transition
-        gCurseurTpsTransition = new Fl_Value_Slider(440, 270, 100, 25, "Tps de transition") ;
-        gCurseurTpsTransition->type(FL_HOR_NICE_SLIDER) ;
-        gCurseurTpsTransition->align(FL_ALIGN_TOP) ;
-        gCurseurTpsTransition->callback(CurseurTpsTransitionCB, NULL) ;
-        gCurseurTpsTransition->bounds(0.01, 2);
-        gCurseurTpsTransition->precision(2);
-        gCurseurTpsTransition->value(gTpsTransition);
+    // Création du curseur Mortalité
+    gCurseurMortalite = new Fl_Value_Slider(440, 215, 100, 25, "Mortalite") ;
+    gCurseurMortalite->type(FL_HOR_NICE_SLIDER) ;
+    gCurseurMortalite->align(FL_ALIGN_TOP) ;
+    gCurseurMortalite->callback(CurseurMortaliteCB, nullptr) ;
+    gCurseurMortalite->bounds(0, 1);
+    gCurseurMortalite->precision(2);
+    gCurseurMortalite->value(game->wolfDeathRate());
 
-    }
+    //Création du curseur mouton
+    gCurseurMouton = new Fl_Value_Slider(30, 440, 150, 25, "Nombre Moutons Initial") ;
+    gCurseurMouton->type(FL_HOR_NICE_SLIDER) ;
+    gCurseurMouton->align(FL_ALIGN_TOP) ;
+    gCurseurMouton->callback(CurseurMoutonCB, NULL) ;
+    gCurseurMouton->bounds(1, 20000);
+    gCurseurMouton->value(game->initialSheepCount());
+    gCurseurMouton->precision(0);                                                   // Précision de la décimale (0 = entier)
+
+    //Création du curseur loup
+    gCurseurLoup = new Fl_Value_Slider(240, 440, 150, 25, "Nombre Loups Initial") ;
+    gCurseurLoup->type(FL_HOR_NICE_SLIDER) ;
+    gCurseurLoup->align(FL_ALIGN_TOP) ;
+    gCurseurLoup->callback(CurseurLoupCB, NULL) ;
+    gCurseurLoup->bounds(1, 20000);
+    gCurseurLoup->value(game->initialWolfCount());
+    gCurseurLoup->precision(0);
+
+    // Création du curseur Temps de transition
+    gCurseurTpsTransition = new Fl_Value_Slider(440, 270, 100, 25, "Tps de transition") ;
+    gCurseurTpsTransition->type(FL_HOR_NICE_SLIDER) ;
+    gCurseurTpsTransition->align(FL_ALIGN_TOP) ;
+    gCurseurTpsTransition->callback(CurseurTpsTransitionCB, NULL) ;
+    gCurseurTpsTransition->bounds(0.01, 2);
+    gCurseurTpsTransition->precision(2);
+    gCurseurTpsTransition->value(gTpsTransition);
+
+
 
     // Création d'une fenêtre pour afficher le rapport loup sur mouton
     gCusrseurRapportLM = new Fl_Value_Slider(470, 325, 40, 100, "Loups/Moutons") ;
