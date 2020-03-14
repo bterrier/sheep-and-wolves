@@ -15,15 +15,13 @@
 
 
 //Déclaration des variables globales
-int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart, gWinner, gNB_MOUTONS_INITIAUX, gNB_LOUPS_INITIAUX;
+int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart, gWinner;
 float gTpsTransition;
 
 //Initialisation au lacement du programme
 void firstinitialiser()
 {
     gStart = 1;                 //Le programme vient d're lancé
-    gNB_MOUTONS_INITIAUX = 2000; //valeur par défaut
-    gNB_LOUPS_INITIAUX = 2000;
 }
 
 
@@ -39,35 +37,11 @@ void Initialiser()
     gStepByStep = 0;
     gPlay = 0;
     gTpsTransition = 1;
+    delete game;
     game = new Game();
     gWinner = VIDE;
 
-    //On place les moutons aléatoirement dans le tableau de jeu
-    int x, y;
-    int n = 0;
 
-    do {
-        x = rand() % Game::TAILLE_MATRICE + 1;
-        y = rand() % Game::TAILLE_MATRICE + 1;
-
-        if (isVacant(x, y, 0)) {
-            game->gTableauJeu[x][y][0] = MOUTON;
-            n++;
-        }
-    } while (n < gNB_MOUTONS_INITIAUX);
-
-    //On place les loups aléatoirment dans le tableau de jeu
-    n = 0;
-
-    do {
-        x = rand() % Game::TAILLE_MATRICE + 1;
-        y = rand() % Game::TAILLE_MATRICE + 1;
-
-        if (isVacant(x, y, 0)) {
-            game->gTableauJeu[x][y][0] = LOUP;
-            n++;
-        }
-    } while (n < gNB_LOUPS_INITIAUX);
 
 }
 
@@ -177,12 +151,12 @@ void CurseurTpsTransitionCB(Fl_Widget *, void *)                   // Change le 
 
 void CurseurMoutonCB(Fl_Widget *, void *)                          // Permet de changer le nombre de moutons initial
 {
-    gNB_MOUTONS_INITIAUX = (int)gCurseurMouton->value() ;               //On récupére la valeur
+    game->setInitialSheepCount(int(gCurseurMouton->value()));               //On récupére la valeur
     Initialiser() ;                                                     //On initialise avec la nouvelle valeur
 }
 
 void CurseurLoupCB(Fl_Widget *, void *)                            // Permet de changer le nombre de loups initial
 {
-    gNB_LOUPS_INITIAUX = (int)gCurseurLoup->value() ;                   //On récupére la valeur
+    game->setInitialWolfCount(int(gCurseurLoup->value()));                   //On récupére la valeur
     Initialiser();                                                      //On initialise avec la nouvelle valeur
 }

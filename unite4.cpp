@@ -25,6 +25,37 @@ Game::Game()
 {
     clear(0);
     clear(1);
+    init();
+}
+
+void Game::init()
+{
+    //On place les moutons aléatoirement dans le tableau de jeu
+    int x, y;
+    int n = 0;
+
+    do {
+        x = rand() % Game::TAILLE_MATRICE + 1;
+        y = rand() % Game::TAILLE_MATRICE + 1;
+
+        if (isVacant(x, y, 0)) {
+            gTableauJeu[x][y][0] = MOUTON;
+            n++;
+        }
+    } while (n < m_initialSheepCount);
+
+    //On place les loups aléatoirment dans le tableau de jeu
+    n = 0;
+
+    do {
+        x = rand() % Game::TAILLE_MATRICE + 1;
+        y = rand() % Game::TAILLE_MATRICE + 1;
+
+        if (isVacant(x, y, 0)) {
+            gTableauJeu[x][y][0] = LOUP;
+            n++;
+        }
+    } while (n < m_initialWolfCount);
 }
 
 bool Game::isSick()                // Fonction de maladie d'un loup
@@ -50,11 +81,31 @@ void Game::clear(int p)
     }
 }
 
-
-
-bool isVacant(int x, int y, int z)           //Fonction permettant de savoir si la case est vide, ou pas
+int Game::initialSheepCount() const
 {
-    return game->gTableauJeu[x][y][z] == VIDE;
+    return m_initialSheepCount;
+}
+
+void Game::setInitialSheepCount(int initialSheepCount)
+{
+    m_initialSheepCount = initialSheepCount;
+}
+
+int Game::initialWolfCount() const
+{
+    return m_initialWolfCount;
+}
+
+void Game::setInitialWolfCount(int initialWolfCount)
+{
+    m_initialWolfCount = initialWolfCount;
+}
+
+
+
+bool Game::isVacant(int x, int y, int z) const           //Fonction permettant de savoir si la case est vide, ou pas
+{
+    return gTableauJeu[x][y][z] == VIDE;
 }
 
 
@@ -113,7 +164,7 @@ void deplacerMouton(int x, int y)           // Procédure déplacant les moutons
         }
     } // tant que l'un des 2 tableaux est occupé, et que le compteur est inférieur à 10 (risque de boucle infine)
 
-    while ((!isVacant(xfutur, yfutur, 1 - p) || !isVacant(xfutur, yfutur, p)) && count < 10);
+    while ((!game->isVacant(xfutur, yfutur, 1 - p) || !game->isVacant(xfutur, yfutur, p)) && count < 10);
 
 
     if (count < 10)   {  // S'il trouve une solution lorsque le compteur est inférieur à 10
@@ -166,7 +217,7 @@ void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
         }
 
         // Sortie si la case est trouvée, ou si le compteur atteint 10
-        while ((!isVacant(a, b, 1 - p) || !isVacant(a, b, p)) && count < 10);
+        while ((!game->isVacant(a, b, 1 - p) || !game->isVacant(a, b, p)) && count < 10);
 
         if (!game->isSick()) { //Si le loup n'est pas malade
             if (count < 10) {      // Si le compteur est inférieur à 10

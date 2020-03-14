@@ -101,7 +101,7 @@ void CreerFenetre()
         gCurseurMouton->align(FL_ALIGN_TOP) ;
         gCurseurMouton->callback(CurseurMoutonCB, NULL) ;
         gCurseurMouton->bounds(1, 20000);
-        gCurseurMouton->value(gNB_MOUTONS_INITIAUX);
+        gCurseurMouton->value(game->initialSheepCount());
         gCurseurMouton->precision(0);                                                   // Précision de la décimale (0 = entier)
 
         //Création du curseur loup
@@ -110,7 +110,7 @@ void CreerFenetre()
         gCurseurLoup->align(FL_ALIGN_TOP) ;
         gCurseurLoup->callback(CurseurLoupCB, NULL) ;
         gCurseurLoup->bounds(1, 20000);
-        gCurseurLoup->value(gNB_LOUPS_INITIAUX);
+        gCurseurLoup->value(game->initialWolfCount());
         gCurseurLoup->precision(0);
 
         // Création du curseur Temps de transition
@@ -142,7 +142,6 @@ void CreerFenetre()
     gCurseurNatalite->value(game->sheepBirthRate());
     gCurseurMortalite->value(game->wolfDeathRate());
     gCurseurTpsTransition->value(gTpsTransition);
-    gCurseurMouton->value(gNB_MOUTONS_INITIAUX);
     gCurseurLoup->activate();
     gCurseurMouton->activate();
     gBoutonPasPas->activate();
