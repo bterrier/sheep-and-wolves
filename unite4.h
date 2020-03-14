@@ -5,7 +5,6 @@
 void deplacerMouton(int x, int y);
 void deplacerLoup(int x, int y);
 void deplacement();
-void setTab(int p);
 [[nodiscard]] bool isVacant(int x, int y, int z);
 
 float rapport() ;
@@ -15,6 +14,8 @@ class Game
 public:
 
     static constexpr int TAILLE_MATRICE = 200;
+
+    Game();
 
     [[nodiscard]] bool isSick();
     [[nodiscard]] bool isPregnant();
@@ -42,6 +43,7 @@ public:
 
     int gTableauJeu[TAILLE_MATRICE + 2][TAILLE_MATRICE + 2][2];
 
+    void clear(int p);
 private:
     float gMortaliteLoup = 0.1;
     float gNataliteMouton = 0.1;

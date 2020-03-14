@@ -21,6 +21,12 @@ static bool helper_random(float rate)
     return isSick;
 }
 
+Game::Game()
+{
+    clear(0);
+    clear(1);
+}
+
 bool Game::isSick()                // Fonction de maladie d'un loup
 {
     return helper_random(gMortaliteLoup);
@@ -31,6 +37,19 @@ bool Game::isPregnant()                    // De meme que pour isSick
     return helper_random(gNataliteMouton);
 }
 
+void Game::clear(int p)
+{
+    for (int i = 0 ; i < TAILLE_MATRICE + 2 ; i++) {
+        for (int j = 0 ; j < TAILLE_MATRICE + 2 ; ++j) {
+            if (i != 0 && j != 0 && i != TAILLE_MATRICE + 1 && j != TAILLE_MATRICE + 1) {
+                gTableauJeu[i][j][p] = VIDE;          // Les cases centrales sont vides
+            } else {
+                gTableauJeu[i][j][p] = BORD;          // Et les bords sont inaccessibles, pour des problèmes de déplacement
+            }
+        }
+    }
+}
+
 
 
 bool isVacant(int x, int y, int z)           //Fonction permettant de savoir si la case est vide, ou pas
@@ -39,18 +58,7 @@ bool isVacant(int x, int y, int z)           //Fonction permettant de savoir si 
 }
 
 
-void setTab(int p)                     // Mise à zéro du tableau de jeu
-{
-    for (int i = 0 ; i < Game::TAILLE_MATRICE + 2 ; i++) {
-        for (int j = 0 ; j < Game::TAILLE_MATRICE + 2 ; ++j) {
-            if (i != 0 && j != 0 && i != Game::TAILLE_MATRICE + 1 && j != Game::TAILLE_MATRICE + 1) {
-                game->gTableauJeu[i][j][p] = VIDE;          // Les cases centrales sont vides
-            } else {
-                game->gTableauJeu[i][j][p] = BORD;          // Et les bords sont inaccessibles, pour des problèmes de déplacement
-            }
-        }
-    }
-}
+
 
 void deplacerMouton(int x, int y)           // Procédure déplacant les moutons
 {
@@ -188,7 +196,7 @@ void deplacement()      // Procédure globale
         }
     }
 
-    setTab(p);      // Et on nettoie le tableau p
+    game->clear(p);      // Et on nettoie le tableau p
 }
 
 float rapport() //calcul le rapport loup/mouton

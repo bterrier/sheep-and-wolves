@@ -42,11 +42,6 @@ void Initialiser()
     game = new Game();
     gWinner = VIDE;
 
-
-    //On vide la tableau de jeu
-    setTab(0);
-    setTab(1);
-
     //On place les moutons aléatoirement dans le tableau de jeu
     int x, y;
     int n = 0;
