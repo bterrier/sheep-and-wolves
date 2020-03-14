@@ -35,18 +35,18 @@ bool Game::isPregnant()                    // De meme que pour isSick
 
 bool isVacant(int x, int y, int z)           //Fonction permettant de savoir si la case est vide, ou pas
 {
-    return gTableauJeu[x][y][z] == VIDE;
+    return game->gTableauJeu[x][y][z] == VIDE;
 }
 
 
 void setTab(int p)                     // Mise à zéro du tableau de jeu
 {
-    for (int i = 0 ; i < TAILLE_MATRICE + 2 ; i++) {
-        for (int j = 0 ; j < TAILLE_MATRICE + 2 ; ++j) {
-            if (i != 0 && j != 0 && i != TAILLE_MATRICE + 1 && j != TAILLE_MATRICE + 1) {
-                gTableauJeu[i][j][p] = VIDE;          // Les cases centrales sont vides
+    for (int i = 0 ; i < Game::TAILLE_MATRICE + 2 ; i++) {
+        for (int j = 0 ; j < Game::TAILLE_MATRICE + 2 ; ++j) {
+            if (i != 0 && j != 0 && i != Game::TAILLE_MATRICE + 1 && j != Game::TAILLE_MATRICE + 1) {
+                game->gTableauJeu[i][j][p] = VIDE;          // Les cases centrales sont vides
             } else {
-                gTableauJeu[i][j][p] = BORD;          // Et les bords sont inaccessibles, pour des problèmes de déplacement
+                game->gTableauJeu[i][j][p] = BORD;          // Et les bords sont inaccessibles, pour des problèmes de déplacement
             }
         }
     }
@@ -109,19 +109,19 @@ void deplacerMouton(int x, int y)           // Procédure déplacant les moutons
 
 
     if (count < 10)   {  // S'il trouve une solution lorsque le compteur est inférieur à 10
-        gTableauJeu[xfutur][yfutur][1 - p] = MOUTON;  // il déplace le mouton dans le nouveau tableau
+        game->gTableauJeu[xfutur][yfutur][1 - p] = MOUTON;  // il déplace le mouton dans le nouveau tableau
 
 
         if (game->isPregnant()) {           // Si le mouton est "enceinte"
-            gTableauJeu[x][y][1 - p] = MOUTON;    // Il laisse un mouton derrière lui (dans le nouveau tableau)
+            game->gTableauJeu[x][y][1 - p] = MOUTON;    // Il laisse un mouton derrière lui (dans le nouveau tableau)
 
         } else {
-            gTableauJeu[x][y][1 - p] = VIDE;  // Sinon, il se déplace simplement
+            game->gTableauJeu[x][y][1 - p] = VIDE;  // Sinon, il se déplace simplement
         }
     } else
-        gTableauJeu[x][y][1 - p] = MOUTON; // Si le compteur est à 10, on laisse le mouton où il était, mais dans le nouveau tableau
+        game->gTableauJeu[x][y][1 - p] = MOUTON; // Si le compteur est à 10, on laisse le mouton où il était, mais dans le nouveau tableau
 
-    gTableauJeu[x][y][p] = VIDE;      // On efface le mouton joué du tableau précédent
+    game->gTableauJeu[x][y][p] = VIDE;      // On efface le mouton joué du tableau précédent
 }
 
 void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
@@ -133,7 +133,7 @@ void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
     for (int i = -1; i <= 1 && !moutonici; i++) { // Balayage des cases tant que le loup n'a pas trouvé de mouton
         for (int j = -1; j <= 1 && !moutonici; j++) {
             // S'il en trouve un
-            if (gTableauJeu[x + i][y + j][1 - p] == MOUTON || gTableauJeu[x + i][y + j][p] == MOUTON) {
+            if (game->gTableauJeu[x + i][y + j][1 - p] == MOUTON || game->gTableauJeu[x + i][y + j][p] == MOUTON) {
                 moutonici = true;
                 moutonx = x + i;    //Définition des coordonées du mouton vu par le loup
                 moutony = y + j;
@@ -142,9 +142,9 @@ void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
     }
 
     if (moutonici) {        // Consommation du mouton par le loup
-        gTableauJeu[x][y][1 - p] = LOUP;            // Naissance d'un nouveau loup dans la case précédente
-        gTableauJeu[moutonx][moutony][1 - p] = LOUP;   //Déplacement du loup sur le mouton vu
-        gTableauJeu[moutonx][moutony][p] = VIDE;        // "Nettoyage" du tableau précédent
+        game->gTableauJeu[x][y][1 - p] = LOUP;            // Naissance d'un nouveau loup dans la case précédente
+        game->gTableauJeu[moutonx][moutony][1 - p] = LOUP;   //Déplacement du loup sur le mouton vu
+        game->gTableauJeu[moutonx][moutony][p] = VIDE;        // "Nettoyage" du tableau précédent
     } else              // Sinon, le loup n'a trouvé aucun mouton
         // Il se déplace aléatoirement, avec la probabilité de mourrir de faim à chaque tour
     {
@@ -162,15 +162,15 @@ void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
 
         if (!game->isSick()) { //Si le loup n'est pas malade
             if (count < 10) {      // Si le compteur est inférieur à 10
-                gTableauJeu[a][b][1 - p] = LOUP;    // On le déplace
+                game->gTableauJeu[a][b][1 - p] = LOUP;    // On le déplace
 
             } else {
-                gTableauJeu[x][y][1 - p] = LOUP; // Il ne bouge pas, mais change de tableau
+                game->gTableauJeu[x][y][1 - p] = LOUP; // Il ne bouge pas, mais change de tableau
             }
         }
     }
 
-    gTableauJeu[x][y][p] = VIDE;    // "Nettoyage" du tableau
+    game->gTableauJeu[x][y][p] = VIDE;    // "Nettoyage" du tableau
     // rq : Si le loup est malade, il n'est pas placé dans le nouveau tableau, il est donc mort
 
 }
@@ -179,11 +179,11 @@ void deplacement()      // Procédure globale
 {
     int p = gTour % 2;  // On balaie le tableau p
 
-    for (int i = 1; i < TAILLE_MATRICE + 1; i++) {
-        for (int j = 1; j < TAILLE_MATRICE + 1; j++) {
-            if (gTableauJeu[i][j][p] == LOUP)   // S'il y a un loup
+    for (int i = 1; i < Game::TAILLE_MATRICE + 1; i++) {
+        for (int j = 1; j < Game::TAILLE_MATRICE + 1; j++) {
+            if (game->gTableauJeu[i][j][p] == LOUP)   // S'il y a un loup
                 deplacerLoup(i, j);     // On le déplace
-            else if (gTableauJeu[i][j][p] == MOUTON)    // Si c'est un mouton
+            else if (game->gTableauJeu[i][j][p] == MOUTON)    // Si c'est un mouton
                 deplacerMouton(i, j);      // On le déplace
         }
     }
@@ -198,11 +198,11 @@ float rapport() //calcul le rapport loup/mouton
     float nbLoup = 0, nbMouton = 0;
 
     //On compte
-    for (int i = 1; i < TAILLE_MATRICE + 1; i++) {
-        for (int j = 1; j < TAILLE_MATRICE + 1; j++) {
-            if (gTableauJeu[i][j][p] == LOUP)
+    for (int i = 1; i < Game::TAILLE_MATRICE + 1; i++) {
+        for (int j = 1; j < Game::TAILLE_MATRICE + 1; j++) {
+            if (game->gTableauJeu[i][j][p] == LOUP)
                 nbLoup = nbLoup + 1;
-            else if (gTableauJeu[i][j][p] == MOUTON)
+            else if (game->gTableauJeu[i][j][p] == MOUTON)
                 nbMouton = nbMouton + 1;
         }
     }

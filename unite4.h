@@ -13,6 +13,9 @@ float rapport() ;
 class Game
 {
 public:
+
+    static constexpr int TAILLE_MATRICE = 200;
+
     [[nodiscard]] bool isSick();
     [[nodiscard]] bool isPregnant();
 
@@ -35,6 +38,9 @@ public:
     {
         gNataliteMouton = birthRate;
     }
+
+
+    int gTableauJeu[TAILLE_MATRICE + 2][TAILLE_MATRICE + 2][2];
 
 private:
     float gMortaliteLoup = 0.1;

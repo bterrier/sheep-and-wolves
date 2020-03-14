@@ -17,7 +17,6 @@
 //Déclaration des variables globales
 int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart, gWinner, gNB_MOUTONS_INITIAUX, gNB_LOUPS_INITIAUX;
 float gTpsTransition;
-int gTableauJeu[TAILLE_MATRICE + 2][TAILLE_MATRICE + 2][2];
 
 //Initialisation au lacement du programme
 void firstinitialiser()
@@ -53,11 +52,11 @@ void Initialiser()
     int n = 0;
 
     do {
-        x = rand() % TAILLE_MATRICE + 1;
-        y = rand() % TAILLE_MATRICE + 1;
+        x = rand() % Game::TAILLE_MATRICE + 1;
+        y = rand() % Game::TAILLE_MATRICE + 1;
 
         if (isVacant(x, y, 0)) {
-            gTableauJeu[x][y][0] = MOUTON;
+            game->gTableauJeu[x][y][0] = MOUTON;
             n++;
         }
     } while (n < gNB_MOUTONS_INITIAUX);
@@ -66,11 +65,11 @@ void Initialiser()
     n = 0;
 
     do {
-        x = rand() % TAILLE_MATRICE + 1;
-        y = rand() % TAILLE_MATRICE + 1;
+        x = rand() % Game::TAILLE_MATRICE + 1;
+        y = rand() % Game::TAILLE_MATRICE + 1;
 
         if (isVacant(x, y, 0)) {
-            gTableauJeu[x][y][0] = LOUP;
+            game->gTableauJeu[x][y][0] = LOUP;
             n++;
         }
     } while (n < gNB_LOUPS_INITIAUX);

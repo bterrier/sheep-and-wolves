@@ -7,7 +7,6 @@
 
 
 // Déclaration des données du projet
-constexpr int TAILLE_MATRICE = 200;
 enum Type {
     VIDE = 0,
     MOUTON = 1,
@@ -22,7 +21,6 @@ extern float gTpsTransition;
 // Flag quand le bouton Solution est sollicite
 
 
-extern int gTableauJeu[TAILLE_MATRICE + 2][TAILLE_MATRICE + 2][2];
 
 // Déclaration des sous-programmes
 void firstinitialiser();
