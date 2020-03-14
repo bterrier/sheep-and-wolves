@@ -1,7 +1,6 @@
 // Sentinelle d'inclusion
 #ifndef _unite4_h
 #define _unite4_h
-float rapport() ;
 
 class Game
 {
@@ -50,6 +49,7 @@ public:
 
     void moveAll();
 
+    float ratio() const;
 private:
     void moveSheep(int x, int y);
     void moveWolf(int x, int y);

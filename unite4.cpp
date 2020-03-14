@@ -250,18 +250,18 @@ void Game::moveAll()      // Procédure globale
     game->clear(p);      // Et on nettoie le tableau p
 }
 
-float rapport() //calcul le rapport loup/mouton
+float Game::ratio() const //calcul le rapport loup/mouton
 {
     int p = gTour % 2; //parité du tour
     float r;
     float nbLoup = 0, nbMouton = 0;
 
     //On compte
-    for (int i = 1; i < Game::TAILLE_MATRICE + 1; i++) {
-        for (int j = 1; j < Game::TAILLE_MATRICE + 1; j++) {
-            if (game->gTableauJeu[i][j][p] == LOUP)
+    for (int i = 1; i < TAILLE_MATRICE + 1; i++) {
+        for (int j = 1; j < TAILLE_MATRICE + 1; j++) {
+            if (gTableauJeu[i][j][p] == LOUP)
                 nbLoup = nbLoup + 1;
-            else if (game->gTableauJeu[i][j][p] == MOUTON)
+            else if (gTableauJeu[i][j][p] == MOUTON)
                 nbMouton = nbMouton + 1;
         }
     }

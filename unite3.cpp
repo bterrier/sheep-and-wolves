@@ -15,7 +15,8 @@
 
 
 //Déclaration des variables globales
-int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart, gWinner;
+int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart;
+Type gWinner;
 float gTpsTransition;
 
 //Initialisation au lacement du programme
@@ -71,10 +72,11 @@ void TraiterCycle()
     // On redessine la zone
     gZoneDessin->redraw() ;
     //On actualise la valeur du rapport
-    gCusrseurRapportLM->value(rapport());
+    const auto ratio = game->ratio();
+    gCusrseurRapportLM->value(ratio);
 
     //Si il n'y a plus de loups, on attend 10 tours et on met fin au jeu
-    if (rapport() == 0) {
+    if (ratio == 0) {
         gTimeOver++;
 
         if (gTimeOver > 10) {
@@ -84,7 +86,7 @@ void TraiterCycle()
     }
 
     //Si il n'y a plus de mouton, on attend 10 tours et on arrette le jeu
-    if (rapport() == -1) {
+    if (ratio == -1) {
         gTimeOver++;
 
         if (gTimeOver > 10) {
