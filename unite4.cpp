@@ -111,7 +111,7 @@ bool Game::isVacant(int x, int y, int z) const           //Fonction permettant d
 
 
 
-void deplacerMouton(int x, int y)           // Procédure déplacant les moutons
+void Game::moveSheep(int x, int y)           // Procédure déplacant les moutons
 {
     int p = gTour % 2;        // p = 0 ou 1 selon ma parité du nombre de tours joués
     int xfutur, yfutur;       // futur case du mouton
@@ -183,7 +183,7 @@ void deplacerMouton(int x, int y)           // Procédure déplacant les moutons
     game->gTableauJeu[x][y][p] = VIDE;      // On efface le mouton joué du tableau précédent
 }
 
-void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
+void Game::moveWolf(int x, int y)         // Procédure de déplacement des loups
 {
     int p = gTour % 2;
     bool moutonici = false;              // Indicateur de présence d'un mouton
@@ -234,16 +234,16 @@ void deplacerLoup(int x, int y)         // Procédure de déplacement des loups
 
 }
 
-void deplacement()      // Procédure globale
+void Game::moveAll()      // Procédure globale
 {
     int p = gTour % 2;  // On balaie le tableau p
 
     for (int i = 1; i < Game::TAILLE_MATRICE + 1; i++) {
         for (int j = 1; j < Game::TAILLE_MATRICE + 1; j++) {
             if (game->gTableauJeu[i][j][p] == LOUP)   // S'il y a un loup
-                deplacerLoup(i, j);     // On le déplace
+                moveWolf(i, j);     // On le déplace
             else if (game->gTableauJeu[i][j][p] == MOUTON)    // Si c'est un mouton
-                deplacerMouton(i, j);      // On le déplace
+                moveSheep(i, j);      // On le déplace
         }
     }
 

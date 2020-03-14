@@ -1,11 +1,6 @@
 // Sentinelle d'inclusion
 #ifndef _unite4_h
 #define _unite4_h
-
-void deplacerMouton(int x, int y);
-void deplacerLoup(int x, int y);
-void deplacement();
-
 float rapport() ;
 
 class Game
@@ -53,7 +48,12 @@ public:
     int initialWolfCount() const;
     void setInitialWolfCount(int initialWolfCount);
 
+    void moveAll();
+
 private:
+    void moveSheep(int x, int y);
+    void moveWolf(int x, int y);
+
     int m_initialSheepCount = 2000;
     int m_initialWolfCount = 2000;
 

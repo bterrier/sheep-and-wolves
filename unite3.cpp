@@ -51,12 +51,12 @@ void TraiterCycle()
 
     //Si le jeu est lancé, on déplace les animaux
     if (gPlay) {
-        deplacement();
+        game->moveAll();
         gTour++;
     }
     //Si le jeu est en mode "Pas à pas", on déplace les animaux et on sort du pas à pas
     else if (gStepByStep) {
-        deplacement();
+        game->moveAll();
         gStepByStep = 0;
         gTour++;
 
