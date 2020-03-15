@@ -14,7 +14,9 @@
 
 
 //Déclaration des variables globales
-int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart;
+int gTour;
+bool gStepByStep, gPlay, gReset, gGameOver, gStart;
+int gTimeOver;
 float gTpsTransition;
 
 //Initialisation au lacement du programme
@@ -31,10 +33,10 @@ void Initialiser()
     /* On définie les diffrentes variables */
 
     gTour = 0;
-    gGameOver = 0;
+    gGameOver = false;
     gTimeOver = 0;
-    gStepByStep = 0;
-    gPlay = 0;
+    gStepByStep = false;
+    gPlay = false;
     gTpsTransition = 1;
     delete game;
     game = new Game();
@@ -52,7 +54,7 @@ void TraiterCycle()
     //Si le jeu est en mode "Pas à pas", on déplace les animaux et on sort du pas à pas
     else if (gStepByStep) {
         game->moveAll();
-        gStepByStep = 0;
+        gStepByStep = false;
         gTour++;
 
     }
@@ -60,7 +62,7 @@ void TraiterCycle()
     //Si l'utilsateur a cliqueé qur "Reset", on initialise le jeu
     if (gReset) {
         Initialiser();
-        gReset = 0;
+        gReset = false;
     }
 
     // On redessine la zone
@@ -74,7 +76,7 @@ void TraiterCycle()
         gTimeOver++;
 
         if (gTimeOver > 10) {
-            gGameOver = 1;
+            gGameOver = true;
             game->setWinner(MOUTON);
         }
     }
@@ -84,7 +86,7 @@ void TraiterCycle()
         gTimeOver++;
 
         if (gTimeOver > 10) {
-            gGameOver = 1;
+            gGameOver = true;
             game->setWinner(LOUP);
         }
     }
@@ -100,8 +102,8 @@ void BoutonQuitterCB(Fl_Widget *, void *)
 
 void BoutonStartPauseCB(Fl_Widget *, void *)
 {
-    gPlay = 1 - gPlay; // on inverse la valuer de gPlay   0 <-> 1
-    gStart = 0;     //Le jeu est lancé
+    gPlay = !gPlay; // on inverse la valuer de gPlay   0 <-> 1
+    gStart = false;     //Le jeu est lancé
 
     if (gPlay) {
         window->gBoutonPasPas->deactivate() ;                                    // Lorsque le jeu se lance, on bloque les boutons et curseurs
@@ -117,15 +119,15 @@ void BoutonStartPauseCB(Fl_Widget *, void *)
 
 void BoutonPasPasCB(Fl_Widget *, void *)
 {
-    gStepByStep = 1;                                                    // Avance d'un tour à chaque clic
-    gStart = 0;
+    gStepByStep = true;                                                    // Avance d'un tour à chaque clic
+    gStart = false;
 
 }
 
 void BoutonResetCB(Fl_Widget *, void *)
 {
-    gReset = 1;                                                         // Relance le jeu
-    gStart = 0;
+    gReset = true;                                                         // Relance le jeu
+    gStart = false;
 }
 
 
