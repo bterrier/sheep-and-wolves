@@ -1,10 +1,6 @@
-// Déclarations externes
-#include "main.h"
-
 #include <FL/Fl.H>      //  fl::run
 
 #include "unite1.h"     // CreerFenetre
-#include "unite2.h"     // DessinerZone
 #include "unite3.h"     // Initialiser, TraiterCycle, TraiterClicZone, TraiterClavierZone
 
 // Déclaration des sous-programmes

@@ -234,6 +234,16 @@ void Game::moveWolf(int x, int y)         // Procédure de déplacement des loup
 
 }
 
+void Game::setWinner(const Type &winner)
+{
+    m_winner = winner;
+}
+
+Type Game::winner() const noexcept
+{
+    return m_winner;
+}
+
 void Game::moveAll()      // Procédure globale
 {
     int p = gTour % 2;  // On balaie le tableau p

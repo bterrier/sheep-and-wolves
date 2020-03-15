@@ -22,9 +22,7 @@ constexpr int H_ZONE = 400;     // Hauteur de la zone
 class MainWindow : public Fl_Double_Window
 {
 public:
-
     MainWindow();
-
 
     ZoneDessin         *gZoneDessin ;
 
@@ -44,6 +42,10 @@ public:
     Fl_GIF_Image *img_debut;
     Fl_GIF_Image *img_loup;
     Fl_Color vert;
+private:
+    static void ZoneDessinDessinerCB(Fl_Widget *widget, void *data);
+    void drawWorld();
+    void updateControls();
 };
 extern MainWindow *window;
 

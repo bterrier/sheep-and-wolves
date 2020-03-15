@@ -2,6 +2,8 @@
 #ifndef _unite4_h
 #define _unite4_h
 
+#include "unite3.h"
+
 class Game
 {
 public:
@@ -50,6 +52,10 @@ public:
     void moveAll();
 
     float ratio() const;
+    [[nodiscard]] Type winner() const noexcept;
+
+    void setWinner(const Type &winner);
+
 private:
     void moveSheep(int x, int y);
     void moveWolf(int x, int y);
@@ -59,6 +65,8 @@ private:
 
     float gMortaliteLoup = 0.1;
     float gNataliteMouton = 0.1;
+
+    Type m_winner = VIDE;
 };
 
 extern Game *game;

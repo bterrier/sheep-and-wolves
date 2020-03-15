@@ -17,7 +17,6 @@ enum Type {
 // Donnees du projet
 
 extern int gTour, gStepByStep, gPlay, gGameOver, gTimeOver, gStart;
-extern Type gWinner;
 extern float gTpsTransition;
 // Flag quand le bouton Solution est sollicite
 

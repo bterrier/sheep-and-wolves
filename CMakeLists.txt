@@ -16,11 +16,8 @@ find_package(FLTK REQUIRED)
 
 add_executable(sheep-and-wolves WIN32
   main.cpp
-  main.h
   unite1.cpp
   unite1.h
-  unite2.cpp
-  unite2.h
   unite3.cpp
   unite3.h
   unite4.cpp

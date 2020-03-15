@@ -9,14 +9,12 @@
 #include <FL/Fl_File_Chooser.H>
 #include <FL/Fl_GIF_Image.H> // fl_file_chooser
 
-#include "unite1.h"     // objets graphiques pZoneDessin, pChampValeur, ...
-#include "unite2.h"
+#include "unite1.h"
 #include "unite4.h"
 
 
 //Déclaration des variables globales
 int gTour, gStepByStep, gPlay, gReset, gGameOver, gTimeOver, gStart;
-Type gWinner;
 float gTpsTransition;
 
 //Initialisation au lacement du programme
@@ -40,10 +38,6 @@ void Initialiser()
     gTpsTransition = 1;
     delete game;
     game = new Game();
-    gWinner = VIDE;
-
-
-
 }
 
 // TraiterCycle
@@ -81,7 +75,7 @@ void TraiterCycle()
 
         if (gTimeOver > 10) {
             gGameOver = 1;
-            gWinner = MOUTON;
+            game->setWinner(MOUTON);
         }
     }
 
@@ -91,7 +85,7 @@ void TraiterCycle()
 
         if (gTimeOver > 10) {
             gGameOver = 1;
-            gWinner = LOUP;
+            game->setWinner(LOUP);
         }
     }
 }
