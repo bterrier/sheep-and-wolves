@@ -8,6 +8,14 @@ class Game
 {
 public:
 
+    enum State {
+        Reset,
+        Pause,
+        Play,
+        StepByStep,
+        GameOver
+    };
+
     static constexpr int TAILLE_MATRICE = 200;
 
     Game();
@@ -67,6 +75,7 @@ private:
     float gNataliteMouton = 0.1;
 
     Type m_winner = VIDE;
+    State m_state = Pause;
 };
 
 extern Game *game;

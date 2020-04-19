@@ -56,6 +56,8 @@ void Game::init()
             n++;
         }
     } while (n < m_initialWolfCount);
+
+    m_state = Pause;
 }
 
 bool Game::isSick()                // Fonction de maladie d'un loup
